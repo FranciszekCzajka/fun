@@ -9,8 +9,26 @@ $dark-blue: #0E1C36;
     margin: 0;
     box-sizing: border-box;
     color: $dark-blue;
+    font-family: 'Dosis', sans-serif;
 }
 
 body {
     background-color: $light-blue;
+    .header {
+        width: 100%;
+        height: 9vh;
+        border-bottom: 4px solid $beige;
+        background-color: $blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .landing {
+        width: 100%;
+        height: 91vh;
+        padding: 64px;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+    }
 }
