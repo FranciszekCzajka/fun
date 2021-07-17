@@ -1,0 +1,16 @@
+$pink: #FFEDE1;
+$beige: #F9FBF2;
+$light-blue: #D7F9FF;
+$blue: #AFCBFF;
+$dark-blue: #0E1C36;
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: $dark-blue;
+}
+
+body {
+    background-color: $light-blue;
+}
