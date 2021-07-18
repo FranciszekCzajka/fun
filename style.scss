@@ -28,7 +28,17 @@ body {
         height: 91vh;
         padding: 64px;
         display: flex;
-        justify-content: center;
-        align-items: flex-start;
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+        .form {
+            display: flex;
+            margin: 16px;
+        }
+        .list {
+            display: flex;
+            margin: 16px;
+            flex-direction: column;
+        }
     }
 }

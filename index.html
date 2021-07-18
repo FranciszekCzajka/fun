@@ -12,8 +12,54 @@
         <h1>FUN</h1>
     </div>
     <div class="landing">
-        <input type="text" />
-        <input type="submit" value="Check!"/>
+        <div class="form">
+            <input type="text" />
+            <input type="submit" value="Check!"/>
+        </div>
+        <div class="list">
+            <ul class="nutrients"></ul>
+        </div>        
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(function (){
+            var datas = $('.list');
+            var nutrients = $('.nutrients');
+            $.ajax({
+                type: 'GET',
+                url: 'https://api.nal.usda.gov/fdc/v1/food/173688%20?api_key=nBKTTixEru2BA0nzf0DBnapEY5Tc6iERJ3lXpUU8',
+                success: function(data) {
+                    datas.prepend('<h1>Food: ' + data.description + '</h1>');
+                    console.log(data);
+                    console.log(data.description);
+                    console.log(data.foodNutrients[2].nutrient.name);
+                    console.log(data.foodNutrients[2].amount);
+                    console.log(data.foodNutrients[2].nutrient.unitName);
+                    console.log(data.foodNutrients[2].nutrient.name, data.foodNutrients[2].amount, data.foodNutrients[2].nutrient.unitName);
+                    console.log(data.foodNutrients[4].nutrient.name);
+                    console.log(data.foodNutrients[4].amount);
+                    console.log(data.foodNutrients[4].nutrient.unitName);
+                    console.log(data.foodNutrients[5].nutrient.name);
+                    console.log(data.foodNutrients[5].amount);
+                    console.log(data.foodNutrients[5].nutrient.unitName);
+                    console.log(data.foodNutrients[8].nutrient.name);
+                    console.log(data.foodNutrients[8].amount);
+                    console.log(data.foodNutrients[8].nutrient.unitName);
+                    console.log(data.foodNutrients[10].nutrient.name);
+                    console.log(data.foodNutrients[10].amount);
+                    console.log(data.foodNutrients[10].nutrient.unitName);
+                    console.log(data.foodNutrients[9].nutrient.name);
+                    console.log(data.foodNutrients[9].amount);
+                    console.log(data.foodNutrients[9].nutrient.unitName);
+                    nutrients.append('<li>' + data.foodNutrients[2].nutrient.name + " " + data.foodNutrients[2].amount + " " + data.foodNutrients[2].nutrient.unitName + '</li>');
+                    nutrients.append('<li>' + data.foodNutrients[4].nutrient.name + " " + data.foodNutrients[4].amount + " " + data.foodNutrients[4].nutrient.unitName + '</li>');
+                    nutrients.append('<li>' + data.foodNutrients[5].nutrient.name + " " + data.foodNutrients[5].amount + " " + data.foodNutrients[5].nutrient.unitName + '</li>');
+                    nutrients.append('<li>' + data.foodNutrients[8].nutrient.name + " " + data.foodNutrients[8].amount + " " + data.foodNutrients[8].nutrient.unitName + '</li>');
+                    nutrients.append('<li>' + data.foodNutrients[10].nutrient.name + " " + data.foodNutrients[10].amount + " " + data.foodNutrients[10].nutrient.unitName + '</li>');
+                    nutrients.append('<li>' + data.foodNutrients[9].nutrient.name + " " + data.foodNutrients[9].amount + " " + data.foodNutrients[9].nutrient.unitName + '</li>');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
