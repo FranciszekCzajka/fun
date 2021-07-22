@@ -1,44 +1,107 @@
-$pink: #FFEDE1;
-$beige: #F9FBF2;
-$light-blue: #D7F9FF;
-$blue: #AFCBFF;
-$dark-blue: #0E1C36;
+$white: #FAFAFA;
+$dark-white: #F0F0F0;
+$light-green: #8EE4AF;
+$green: #5CDB95;
+$black: #020202;
+$grey: #DFDFDF;
+$dark-grey: #D0D0D0;
 
 * {
-    padding: 0;
-    margin: 0;
     box-sizing: border-box;
-    color: $dark-blue;
-    font-family: 'Dosis', sans-serif;
 }
 
 body {
-    background-color: $light-blue;
+    font-family: 'Helvetica', sans-serif;
+    color: $black;
+    padding: 0;
+    margin: 0;
+    background-color: $white;
     .header {
         width: 100%;
         height: 9vh;
-        border-bottom: 4px solid $beige;
-        background-color: $blue;
+        background-color: $green;
         display: flex;
         justify-content: center;
         align-items: center;
+        .title {
+            color: $white;
+            letter-spacing: 1.2px;
+        }
     }
     .landing {
         width: 100%;
         height: 91vh;
-        padding: 64px;
+        padding: 32px 16px;
         display: flex;
         justify-content: start;
         align-items: center;
         flex-direction: column;
+        .subtitle {
+            color: $black;
+        }
         .form {
             display: flex;
             margin: 16px;
+            .input {
+                border: none;
+                font-size: 18px;
+                padding: 12px 26px;
+                color: $black;
+                background-color: $grey;
+            }
+            .submit {
+                border: 0;
+                background-color: $dark-grey;
+                font-size: 18px;
+                font-weight: bold;
+                letter-spacing: 1.2px;
+                padding: 12px;
+                cursor: pointer;
+            }
         }
-        .list {
+        .results {
             display: flex;
-            margin: 16px;
             flex-direction: column;
+            justify-content: center;
+            .food-name {
+                margin: 12px;
+                margin-top: 0;
+                text-align: center;
+            }
+            .results-list {
+                display: flex;
+                flex-direction: column;
+                list-style: none;
+                padding: 0;
+                .result {
+                    padding: 16px;
+                    margin: 6px;
+                    background-color: $dark-white;
+                    box-shadow: 0px 0px 4px 1px #F0F0F0;
+                    cursor: pointer;
+                }
+            }
+            .nutrients {
+                border-collapse: collapse;
+                .nutrients-header {
+                    font-weight: bold;
+                    background-color: $light-green;
+                    color: $white;
+                }
+                .nutrients-row:nth-child(2n) {
+                    background-color: $grey;
+                }
+                .nutrients-header, .nutrients-cell {
+                    padding: 8px;
+                }
+                .unit {
+                    text-align: right;
+                }
+            }
         }
     }
+}
+
+:focus {
+    outline: none;
 }
