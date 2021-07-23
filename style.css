@@ -94,7 +94,6 @@ body .landing .results {
 
 body .landing .results .food-name {
   margin: 12px;
-  margin-top: 0;
   text-align: center;
 }
 
@@ -125,7 +124,7 @@ body .landing .results .nutrients {
 
 body .landing .results .nutrients .nutrients-header {
   font-weight: bold;
-  background-color: #8EE4AF;
+  background-color: #5CDB95;
   color: #FAFAFA;
 }
 
@@ -137,8 +136,77 @@ body .landing .results .nutrients .nutrients-header, body .landing .results .nut
   padding: 8px;
 }
 
-body .landing .results .nutrients .unit {
+body .landing .results .nutrients .unit, body .landing .results .nutrients .amount {
   text-align: right;
+}
+
+body .connection-error {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .connection-error .connection-modal {
+  width: 350px;
+  height: 150px;
+  background-color: #FAFAFA;
+  border-radius: 12px;
+}
+
+body .connection-error .connection-modal .connection-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  background-color: #5CDB95;
+  color: #FAFAFA;
+  border-radius: 12px 12px 0 0;
+}
+
+body .connection-error .connection-modal .connection-header .connection-header-left,
+body .connection-error .connection-modal .connection-header .connection-header-right {
+  width: 50%;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+}
+
+body .connection-error .connection-modal .connection-header .connection-header-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+body .connection-error .connection-modal .connection-header .connection-header-right .connection-x {
+  cursor: pointer;
+  -webkit-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+
+body .connection-error .connection-modal .connection-header .connection-header-right .connection-x:hover {
+  color: #ff4f67;
+}
+
+body .connection-error .connection-modal .connection-message {
+  padding: 16px;
 }
 
 :focus {

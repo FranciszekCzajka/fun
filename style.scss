@@ -5,6 +5,7 @@ $green: #5CDB95;
 $black: #020202;
 $grey: #DFDFDF;
 $dark-grey: #D0D0D0;
+$red: #ff4f67;
 
 * {
     box-sizing: border-box;
@@ -65,7 +66,6 @@ body {
             justify-content: center;
             .food-name {
                 margin: 12px;
-                margin-top: 0;
                 text-align: center;
             }
             .results-list {
@@ -85,7 +85,7 @@ body {
                 border-collapse: collapse;
                 .nutrients-header {
                     font-weight: bold;
-                    background-color: $light-green;
+                    background-color: $green;
                     color: $white;
                 }
                 .nutrients-row:nth-child(2n) {
@@ -94,9 +94,54 @@ body {
                 .nutrients-header, .nutrients-cell {
                     padding: 8px;
                 }
-                .unit {
+                .unit, .amount {
                     text-align: right;
                 }
+            }
+        }
+    }
+    .connection-error {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        background-color: rgba($color: #000000, $alpha: 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .connection-modal {
+            width: 350px;
+            height: 150px;
+            background-color: $white;
+            border-radius: 12px;
+            .connection-header {
+                display: flex;
+                flex-direction: row;
+                background-color: $green;
+                color: $white;
+                border-radius: 12px 12px 0 0;
+                .connection-header-left, 
+                .connection-header-right {               
+                    width: 50%;
+                    padding: 16px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    letter-spacing: 1.2px;
+                }
+                .connection-header-right {
+                    display: flex;
+                    justify-content: flex-end;   
+                    .connection-x {
+                        cursor: pointer;
+                        transition: all .3s ease-in-out;
+                        &:hover {
+                            color: $red;
+                        }
+                    }
+                }
+            }
+            .connection-message {
+                padding: 16px;
             }
         }
     }
