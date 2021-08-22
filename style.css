@@ -158,14 +158,12 @@ body .landing .results .nutrients .nutrients-cell-unit, body .landing .results .
 }
 
 body .connection-error-overlay {
+  display: none;
   width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;

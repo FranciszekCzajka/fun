@@ -3,43 +3,16 @@ let input = document.querySelector('.input');
 
 function showError(message) {
 
-    const landing = document.querySelector(".landing");
-    const errorDiv = document.createElement("div");
-    errorDiv.className = "connection-error-overlay";
-    landing.appendChild(errorDiv);
-
-    const errorModal = document.createElement("div");
-    errorModal.className = "connection-error";
-    errorDiv.appendChild(errorModal);
-
-    const errorHeader = document.createElement("div");
-    errorHeader.className = "connection-header";
-    errorModal.appendChild(errorHeader);
-
-    const headerLeft = document.createElement("div");
-    headerLeft.className = "connection-header-left";
-    headerLeft.innerText = "Error!";
-    errorHeader.appendChild(headerLeft);
-
-    const headerRight = document.createElement("div");
-    headerRight.className = "connection-header-right";
-    errorHeader.appendChild(headerRight);
-
-    const headerClose = document.createElement("div");
-    headerClose.className = "connection-x";
-    headerRight.appendChild(headerClose);
-
-    const headerX = document.createElement("i");
-    headerX.className = "fas fa-times";
-    headerClose.appendChild(headerX);
-
-    const errorMessage = document.createElement("div");
-    errorMessage.className = "connection-message";
+    const errorModal = document.querySelector(".connection-error-overlay");
+    errorModal.style.display = "flex";
+    
+    const errorMessage = document.querySelector(".connection-message");
     errorMessage.innerText = message;
-    errorModal.appendChild(errorMessage);
+    
+    const errorClose = document.querySelector(".connection-x");
 
-    headerX.addEventListener('click', function() {
-        landing.removeChild(errorDiv);
+    errorClose.addEventListener('click', function() {
+        errorModal.style.display = "none";
     });
 }
 
@@ -122,6 +95,7 @@ button.addEventListener('click', function() {
                     return processingPromise;
                 })
                 .then(function(processedResponse) {
+                    console.log(processedResponse);
                     if (processedResponse.foods.length) {
                         foods.innerHTML = "";
         
@@ -129,19 +103,14 @@ button.addEventListener('click', function() {
                         foodsList.className = "results-list";
                         foods.appendChild(foodsList);
         
-                        let i = 0;
-    
-                        while(processedResponse.foods[i]) {
+                        for (let i = 0; i < processedResponse.foods.length; i++) {
                             const food = document.createElement("li");
                             food.innerText = processedResponse.foods[i].description;
                             food.className = "result animation-fade-in";
                             food.tabIndex = i;
                             foodsList.appendChild(food);
-                            i += 1;
                         }
-        
-                        i = 0;
-    
+                            
                         //Event Delegation
         
                         foodsList.addEventListener('click', function(event) {
@@ -163,6 +132,7 @@ button.addEventListener('click', function() {
                     } else {
                         showError("Did not find anything!");
                         input.value = "";
+                        foods.innerHTML = "";
                     }           
                 });
         } else {
