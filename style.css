@@ -157,6 +157,16 @@ body .landing .results .nutrients .nutrients-cell-unit, body .landing .results .
   text-align: right;
 }
 
+body .landing .results .add-to-calculator {
+  text-align: center;
+  margin-top: 16px;
+  padding: 12px;
+  font-size: 14px;
+  background-color: #3B7555;
+  color: #FAFAFA;
+  cursor: pointer;
+}
+
 body .connection-error-overlay {
   display: none;
   width: 100vw;
@@ -224,6 +234,13 @@ body .connection-error-overlay .connection-error .connection-header .connection-
 body .connection-error-overlay .connection-error .connection-message {
   font-size: 20px;
   padding: 18px;
+}
+
+body .calculator {
+  position: absolute;
+  border: 2px solid #3B7555;
+  border-left: none;
+  top: 25%;
 }
 
 @-webkit-keyframes fadeIn {

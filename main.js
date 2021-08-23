@@ -16,17 +16,40 @@ function showError(message) {
     });
 }
 
-function displayNutrients(foodDescription, foodEnergy, foodProtein, foodFats, foodCarbohydrates, foodSugars, foodFiber) {
+function addToCalculator(foodTocalc) {
 
-    const foods = document.querySelector(".results");
+    const calcTable = document.querySelector(".calculator-table");
+    const listElement = document.createElement("tr");
+    listElement.className = "calculator-table-row";
+
+    for (let i = 0; i < foodTocalc.length; i++) {
+        const tableCell = document.createElement("td");
+        tableCell.className = "calculator-table-cell";
+        tableCell.innerText = foodTocalc[i];    
+        listElement.append(tableCell);
+    }
+
+    const tableCell = document.createElement("td");
+    tableCell.className = "calculator-table-cell";
+    const input = document.createElement("input");
+    input.type = "number";
+    input.value = 100;
+    tableCell.append(input);
+    listElement.append(tableCell);
+    calcTable.append(listElement);
+}
+
+function displayNutrients(foodObject) {
+
+    const results = document.querySelector(".results");
 
     const foodName = document.createElement("h3");
     foodName.className = "food-name";
-    foodName.innerText = foodDescription;
-    foods.appendChild(foodName);
+    foodName.innerText = foodObject[6].name;
+    results.appendChild(foodName);
     const nutrientsTable = document.createElement("table");
     nutrientsTable.className = "nutrients";
-    foods.appendChild(nutrientsTable);
+    results.appendChild(nutrientsTable);
 
     const tableHeaders = ["Name", "Amount per 100g", "Unit"];
 
@@ -41,39 +64,54 @@ function displayNutrients(foodDescription, foodEnergy, foodProtein, foodFats, fo
     }
 
     nutrientsTable.appendChild(tableHeadersRow);
-
-    for(let i = 0; i < 6; i++) {
+    
+    for(let i = 0; i < foodObject.length - 1; i++){
         const tableRow = document.createElement("tr");
         tableRow.className = "nutrients-row";
         nutrientsTable.appendChild(tableRow);
-        
-        const tableNutrientsNames = ["Energy", "Protein", "Fats", "Carbohydrates", "Sugars", "Fiber"];
-        const foodNutrients = [foodEnergy, foodProtein, foodFats, foodCarbohydrates, foodSugars, foodFiber];
 
-        for(let j = 0; j < 3; j++) {
-            const tableCell = document.createElement("td");
+        for(let j = 0; j < 3; j++){
 
-            if (j == 0) {
-                tableCell.className = "nutrients-cell";
-                tableCell.innerText = tableNutrientsNames[i];
-            } else if (j == 1) {
-                tableCell.className = "nutrients-cell nutrients-cell-amount";
-                if (i != 0) {
-                    tableCell.innerText = foodNutrients[i].toFixed(1);  
-                } else {                    
-                    tableCell.innerText = foodNutrients[i];  
-                }
-            } else {
-                tableCell.className = "nutrients-cell nutrients-cell-unit";
-                if (i == 0) {
-                    tableCell.innerText = "kcal";
+            for(const [key, value] of Object.entries(foodObject[i])) {
+                const tableCell = document.createElement("td");
+
+                if (j == 0) {
+                    tableCell.className = "nutrients-cell";
+                    tableCell.innerText = key.charAt(0).toUpperCase() + key.slice(1);
+                } else if (j == 1) {
+                    tableCell.className = "nutrients-cell nutrients-cell-amount";
+                    tableCell.innerText = value;
                 } else {
-                    tableCell.innerText = "g";
+                    if (i == 0) {
+                        tableCell.className = "nutrients-cell nutrients-cell-unit";
+                        tableCell.innerText = "kcal";
+                    } else {
+                        tableCell.className = "nutrients-cell nutrients-cell-unit";
+                        tableCell.innerText = "g";
+                    }
                 }
-            }            
-            tableRow.appendChild(tableCell);
+                tableRow.append(tableCell);
+            }
         }
-    }    
+    }
+
+    const addToCalc = document.createElement("div");
+    addToCalc.className = "add-to-calculator";
+    addToCalc.innerText = "Add to calculator!";
+    results.appendChild(addToCalc);
+
+    addToCalc.addEventListener('click', function() {
+        const foodToCalc =[
+            foodObject[6].name, 
+            foodObject[0].energy, 
+            foodObject[1].protein, 
+            foodObject[2].fats, 
+            foodObject[3].carbohydrates,
+            foodObject[4].sugars,
+            foodObject[5].fiber
+        ];
+        addToCalculator(foodToCalc);
+    });
 }
 
 button.addEventListener('click', function() {
@@ -95,7 +133,6 @@ button.addEventListener('click', function() {
                     return processingPromise;
                 })
                 .then(function(processedResponse) {
-                    console.log(processedResponse);
                     if (processedResponse.foods.length) {
                         foods.innerHTML = "";
         
@@ -110,25 +147,23 @@ button.addEventListener('click', function() {
                             food.tabIndex = i;
                             foodsList.appendChild(food);
                         }
-                            
-                        //Event Delegation
-        
+                                
                         foodsList.addEventListener('click', function(event) {
                             if (event.target.tagName == "LI") {
                                 input.value = "";
                                 foods.innerHTML = "";
-                                displayNutrients(
-                                    processedResponse.foods[event.target.tabIndex].description,
-                                    processedResponse.foods[event.target.tabIndex].foodNutrients[3].value,
-                                    processedResponse.foods[event.target.tabIndex].foodNutrients[0].value,
-                                    processedResponse.foods[event.target.tabIndex].foodNutrients[1].value,
-                                    processedResponse.foods[event.target.tabIndex].foodNutrients[2].value,
-                                    processedResponse.foods[event.target.tabIndex].foodNutrients[8].value,
-                                    processedResponse.foods[event.target.tabIndex].foodNutrients[9].value,
-                                );
+                                const foodObject = [
+                                    {"energy": processedResponse.foods[event.target.tabIndex].foodNutrients[3].value},
+                                    {"protein": processedResponse.foods[event.target.tabIndex].foodNutrients[0].value.toFixed(2)},
+                                    {"fats": processedResponse.foods[event.target.tabIndex].foodNutrients[1].value.toFixed(2)},
+                                    {"carbohydrates": processedResponse.foods[event.target.tabIndex].foodNutrients[2].value.toFixed(2)},
+                                    {"sugars": processedResponse.foods[event.target.tabIndex].foodNutrients[8].value.toFixed(2)},
+                                    {"fiber": processedResponse.foods[event.target.tabIndex].foodNutrients[9].value.toFixed(2)},
+                                    {"name": processedResponse.foods[event.target.tabIndex].description}
+                                ];
+                                displayNutrients(foodObject);
                             }
-                        }); 
-    
+                        });     
                     } else {
                         showError("Did not find anything!");
                         input.value = "";
