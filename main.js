@@ -1,5 +1,7 @@
 const button = document.querySelector('.submit');
 let input = document.querySelector('.input');
+const foodsInCalcUnchanged = [];
+const foodsInCalcChanged = [];
 
 function showError(message) {
 
@@ -16,27 +18,90 @@ function showError(message) {
     });
 }
 
-function addToCalculator(foodTocalc) {
-
-    const calcTable = document.querySelector(".calculator-table");
-    const listElement = document.createElement("tr");
-    listElement.className = "calculator-table-row";
-
-    for (let i = 0; i < foodTocalc.length; i++) {
-        const tableCell = document.createElement("td");
-        tableCell.className = "calculator-table-cell";
-        tableCell.innerText = foodTocalc[i];    
-        listElement.append(tableCell);
+function deleteNutritionRow(rowId) {
+    foodsInCalcUnchanged.splice(rowId, 1);
+    foodsInCalcChanged.splice(rowId, 1);
+    const tableBody = document.querySelector(".table-body");
+    rows = tableBody.querySelectorAll("tr");
+    howManyRows = rows[rows.length - 1].className.replace(/[^0-9]/g,'');
+    rowToDelete = document.querySelector(`.table-row-${rowId}`);
+    rowToDelete.remove();
+    for(let i = rowId + 1; i <= howManyRows; i++) {
+        const changingRow = tableBody.querySelector(`.table-row-${i}`);
+        const tdInput = changingRow.querySelector(".table-cell-7");
+        const tdX = changingRow.querySelector(".table-cell-8");
+        const input = tdInput.querySelector(`.input-${i}`);
+        const x = tdX.querySelector(`.delete-${i}`);
+        changingRow.className = `table-row-${i - 1}`;
+        input.className = `input-${i - 1}`;
+        x.className = `fas fa-times delete-${i - 1}`;
     }
+}
 
+function changeNutritionAmounts(rowId, currentInput) {
+    const currentRow = document.querySelector(`.table-row-${rowId}`);
+
+    const currentUnchanged = foodsInCalcUnchanged[rowId];
+    const currentChanged = foodsInCalcChanged[rowId];
+
+    currentInput.addEventListener('keyup', function() {
+        
+        for(let i = 1; i < currentChanged.length; i++) {
+            const currentCell = currentRow.querySelector(`.table-cell-${i}`);
+            currentChanged[i] = (currentUnchanged[i] / 100) * currentInput.value;
+            if(i == 1) {
+                currentCell.innerText = currentChanged[i].toFixed(0);
+            } else {
+                currentCell.innerText = currentChanged[i].toFixed(2);
+            }
+        }
+    });
+}
+
+function addToCalculator(foodToCalc) {
+        
+    foodsInCalcUnchanged.push(foodToCalc.slice());
+    foodsInCalcChanged.push(foodToCalc.slice());
+
+    const whereAmI = foodsInCalcUnchanged.length - 1;
+    
+    tableBody = document.querySelector(".table-body");
+    tableRow = document.createElement("tr");
+    tableRow.className = `table-row-${whereAmI}`;
+
+    for(let i = 0; i < foodsInCalcChanged[whereAmI].length; i++) {
+        const tableCell = document.createElement("td");
+        tableCell.className = `table-cell-${i}`;
+        tableCell.innerText = foodsInCalcUnchanged[whereAmI][i];
+        tableRow.append(tableCell);
+    }    
+    
     const tableCell = document.createElement("td");
-    tableCell.className = "calculator-table-cell";
+    tableCell.className = "table-cell-7";
     const input = document.createElement("input");
     input.type = "number";
+    input.className = `input-${whereAmI}`;
     input.value = 100;
     tableCell.append(input);
-    listElement.append(tableCell);
-    calcTable.append(listElement);
+    tableRow.append(tableCell);
+
+    const tableCellX = document.createElement("td");
+    tableCellX.className = "table-cell-8";
+    const deleteRow = document.createElement("i");
+    deleteRow.className = `fas fa-times delete-${whereAmI}`;
+    deleteRow.style.padding = "12px";
+    tableCellX.append(deleteRow);
+    tableRow.append(tableCellX);
+
+    tableBody.append(tableRow);
+
+    deleteRow.addEventListener('click', function() {
+        deleteNutritionRow(Number(this.className.replace(/[^0-9]/g,'')));
+    });
+
+    input.addEventListener('focus', function() {
+        changeNutritionAmounts(Number(this.className.replace(/[^0-9]/g,'')), input);
+    });
 }
 
 function displayNutrients(foodObject) {
