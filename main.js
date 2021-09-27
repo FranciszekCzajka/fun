@@ -201,7 +201,7 @@ button.addEventListener('click', function() {
                     if (processedResponse.foods.length) {
                         foods.innerHTML = "";
         
-                        const foodsList = document.createElement("ul");
+                        const foodsList = document.createElement("ol");
                         foodsList.className = "results-list";
                         foods.appendChild(foodsList);
         
@@ -209,22 +209,25 @@ button.addEventListener('click', function() {
                             const food = document.createElement("li");
                             food.innerText = processedResponse.foods[i].description;
                             food.className = "result animation-fade-in";
-                            food.tabIndex = i;
+                            food.tabIndex = 0;
+                            food.value = i;
                             foodsList.appendChild(food);
                         }
-                                
+                        
+                        console.log(processedResponse);
+
                         foodsList.addEventListener('click', function(event) {
                             if (event.target.tagName == "LI") {
                                 input.value = "";
                                 foods.innerHTML = "";
                                 const foodObject = [
-                                    {"energy": processedResponse.foods[event.target.tabIndex].foodNutrients[3].value},
-                                    {"protein": processedResponse.foods[event.target.tabIndex].foodNutrients[0].value.toFixed(2)},
-                                    {"fats": processedResponse.foods[event.target.tabIndex].foodNutrients[1].value.toFixed(2)},
-                                    {"carbohydrates": processedResponse.foods[event.target.tabIndex].foodNutrients[2].value.toFixed(2)},
-                                    {"sugars": processedResponse.foods[event.target.tabIndex].foodNutrients[8].value.toFixed(2)},
-                                    {"fiber": processedResponse.foods[event.target.tabIndex].foodNutrients[9].value.toFixed(2)},
-                                    {"name": processedResponse.foods[event.target.tabIndex].description}
+                                    {"energy": processedResponse.foods[event.target.value].foodNutrients[3].value},
+                                    {"protein": processedResponse.foods[event.target.value].foodNutrients[0].value.toFixed(2)},
+                                    {"fats": processedResponse.foods[event.target.value].foodNutrients[1].value.toFixed(2)},
+                                    {"carbohydrates": processedResponse.foods[event.target.value].foodNutrients[2].value.toFixed(2)},
+                                    {"sugars": processedResponse.foods[event.target.value].foodNutrients[8].value.toFixed(2)},
+                                    {"fiber": processedResponse.foods[event.target.value].foodNutrients[9].value.toFixed(2)},
+                                    {"name": processedResponse.foods[event.target.value].description}
                                 ];
                                 displayNutrients(foodObject);
                             }
