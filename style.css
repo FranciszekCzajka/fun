@@ -230,7 +230,6 @@ body .connection-error-overlay .connection-error .connection-message {
 
 body .calculator {
   position: fixed;
-  bottom: -285px;
   left: 0;
   right: 0;
   background-color: #FAFAFA;
@@ -397,6 +396,13 @@ body .calculator .calculator-table .table-body::-webkit-scrollbar {
   body .calculator {
     height: 90vh;
     bottom: -90vh;
+  }
+}
+
+@media (min-width: 1400px) {
+  body .calculator {
+    height: 285px;
+    bottom: -285px;
   }
 }
 /*# sourceMappingURL=style.css.map */

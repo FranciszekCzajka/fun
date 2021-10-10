@@ -168,7 +168,6 @@ body {
     }
     .calculator {
         position: fixed;
-        bottom: -285px;
         left: 0;
         right: 0;
         background-color: $white;
@@ -312,5 +311,10 @@ body {
 
 }
 @media (min-width: 1400px) {
-
+    body {
+        .calculator {
+            height: 285px;
+            bottom: -285px;
+        }
+    }
 }
