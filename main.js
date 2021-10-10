@@ -31,7 +31,7 @@ function deleteNutritionRow(rowId) {
         const tdInput = changingRow.querySelector(".table-cell-7");
         const tdX = changingRow.querySelector(".table-cell-8");
         const input = tdInput.querySelector(`.input-${i}`);
-        const x = tdX.querySelector(`.delete-${i}`);
+        const x = tdInput.querySelector(`.delete-${i}`);
         changingRow.className = `table-row-${i - 1}`;
         input.className = `input-${i - 1}`;
         x.className = `fas fa-times delete-${i - 1}`;
@@ -77,21 +77,17 @@ function addToCalculator(foodToCalc) {
     }    
     
     const tableCell = document.createElement("td");
-    tableCell.className = "table-cell-7";
     const input = document.createElement("input");
+    tableCell.className = "table-cell-7";
     input.type = "number";
     input.className = `input-${whereAmI}`;
     input.value = 100;
-    tableCell.append(input);
-    tableRow.append(tableCell);
-
-    const tableCellX = document.createElement("td");
-    tableCellX.className = "table-cell-8";
     const deleteRow = document.createElement("i");
     deleteRow.className = `fas fa-times delete-${whereAmI}`;
-    deleteRow.style.padding = "12px";
-    tableCellX.append(deleteRow);
-    tableRow.append(tableCellX);
+    deleteRow.style.marginLeft = "8px";
+    tableCell.append(input);
+    tableCell.append(deleteRow);
+    tableRow.append(tableCell);
 
     tableBody.append(tableRow);
 
@@ -175,6 +171,7 @@ function displayNutrients(foodObject) {
             foodObject[4].sugars,
             foodObject[5].fiber
         ];
+                
         addToCalculator(foodToCalc);
     });
 }
@@ -208,13 +205,11 @@ button.addEventListener('click', function() {
                         for (let i = 0; i < processedResponse.foods.length; i++) {
                             const food = document.createElement("li");
                             food.innerText = processedResponse.foods[i].description;
-                            food.className = "result animation-fade-in";
+                            food.className = "result";
                             food.tabIndex = 0;
                             food.value = i;
                             foodsList.appendChild(food);
                         }
-                        
-                        console.log(processedResponse);
 
                         foodsList.addEventListener('click', function(event) {
                             if (event.target.tagName == "LI") {
@@ -228,10 +223,24 @@ button.addEventListener('click', function() {
                                     {"sugars": processedResponse.foods[event.target.value].foodNutrients[8].value.toFixed(2)},
                                     {"fiber": processedResponse.foods[event.target.value].foodNutrients[9].value.toFixed(2)},
                                     {"name": processedResponse.foods[event.target.value].description}
-                                ];
+                                ];                                 
                                 displayNutrients(foodObject);
+
+                                const calculator = document.querySelector(".calculator");
+                                const calcOpen = document.querySelector(".calculator-open");
+                                const calcTableHeight = document.querySelector(".calculator-table").clientHeight;
+                                calculator.style.bottom = `-${calcTableHeight - 45}px`;
+                                calcOpen.addEventListener('click', function(){
+                                    if(calcOpen.innerText == "Open calculator!") {
+                                        calculator.style.bottom = "0";
+                                        calcOpen.innerHTML = "Close calculator!<i class='fas fa-calculator'></i>";
+                                    } else {
+                                        calculator.style.bottom = `-${calcTableHeight - 45}px`;
+                                        calcOpen.innerHTML = "Open calculator!<i class='fas fa-calculator'></i>";
+                                    }
+                                });
                             }
-                        });     
+                        });
                     } else {
                         showError("Did not find anything!");
                         input.value = "";
@@ -245,3 +254,33 @@ button.addEventListener('click', function() {
         showError("Please make sure you are connected to Internet!");
     }
 });
+
+
+const slider = document.querySelector(".table-body");
+
+let isDown = false;
+let startX;
+let scrollLeft;
+
+slider.addEventListener('mousedown', (e) => {
+    isDown = true;
+    slider.classList.add('active');
+    startX = e.pageX - slider.offsetLeft;
+    scrollLeft = slider.scrollLeft;
+  });
+  slider.addEventListener('mouseleave', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
+  slider.addEventListener('mouseup', () => {
+    isDown = false;
+    slider.classList.remove('active');
+  });
+  slider.addEventListener('mousemove', (e) => {
+    if(!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - startX) * 1;
+    slider.scrollLeft = scrollLeft - walk;
+    console.log(walk);
+  });

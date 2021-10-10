@@ -114,22 +114,14 @@ body .landing .results .results-list .result {
           box-shadow: 0px 0px 4px 1px #F0F0F0;
   -webkit-transition: .4s all ease-in-out;
   transition: .4s all ease-in-out;
+  -webkit-animation: fadeIn .4s ease 0s 1;
+          animation: fadeIn .4s ease 0s 1;
   cursor: pointer;
 }
 
 body .landing .results .results-list .result:hover {
   background-color: #3B7555;
   color: #FAFAFA;
-}
-
-body .landing .results .results-list .animation-fade-in {
-  -webkit-animation: fadeIn .4s ease 0s 1;
-          animation: fadeIn .4s ease 0s 1;
-}
-
-body .landing .results .results-list .animation-fade-out {
-  -webkit-animation: fadeOut .3s ease 0s 1;
-          animation: fadeOut .3s ease 0s 1;
 }
 
 body .landing .results .nutrients {
@@ -237,10 +229,126 @@ body .connection-error-overlay .connection-error .connection-message {
 }
 
 body .calculator {
-  position: absolute;
-  border: 2px solid #3B7555;
-  border-left: none;
-  top: 25%;
+  position: fixed;
+  bottom: -285px;
+  left: 0;
+  right: 0;
+  background-color: #FAFAFA;
+  -webkit-transition: all .7s ease-out;
+  transition: all .7s ease-out;
+}
+
+body .calculator .calculator-open {
+  position: relative;
+  display: inline-block;
+  min-width: 194px;
+  text-align: center;
+  padding: 12px 18px;
+  font-size: 18px;
+  color: #FAFAFA;
+  background-color: #3B7555;
+  cursor: pointer;
+  border: none;
+}
+
+body .calculator .calculator-open .fa-calculator {
+  margin-left: 8px;
+}
+
+body .calculator .calculator-table {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  height: 100%;
+}
+
+body .calculator .calculator-table .calculator-table-head {
+  min-width: 194px;
+}
+
+body .calculator .calculator-table .calculator-table-head .calculator-table-row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .calculator .calculator-table .calculator-table-head .calculator-table-row .calculator-table-header {
+  text-align: left;
+  padding: 6px 12px;
+}
+
+body .calculator .calculator-table .calculator-table-head .calculator-table-row .calculator-table-header:nth-child(2n) {
+  background-color: #FAFAFA;
+}
+
+body .calculator .calculator-table .calculator-table-head .calculator-table-row .calculator-table-header:nth-child(2n + 1) {
+  background-color: #DFDFDF;
+}
+
+body .calculator .calculator-table .table-body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+body .calculator .calculator-table .table-body [class*=table-row-] {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-animation: fadeIn .4s ease 0s 1;
+          animation: fadeIn .4s ease 0s 1;
+}
+
+body .calculator .calculator-table .table-body [class*=table-row-] [class*=table-cell-] {
+  min-width: 230px;
+  padding: 6px 12px;
+  text-align: right;
+}
+
+body .calculator .calculator-table .table-body [class*=table-row-] [class*=table-cell-]:nth-child(2n) {
+  background-color: #FAFAFA;
+}
+
+body .calculator .calculator-table .table-body [class*=table-row-] [class*=table-cell-]:nth-child(2n + 1) {
+  background-color: #DFDFDF;
+}
+
+body .calculator .calculator-table .table-body [class*=table-row-] .table-cell-0 {
+  text-align: center;
+}
+
+body .calculator .calculator-table .table-body [class*=table-row-] .table-cell-7 {
+  padding: 4.5px 12px;
+}
+
+body .calculator .calculator-table .table-body [class*=table-row-] .table-cell-7 [class*=delete-] {
+  cursor: pointer;
+}
+
+body .calculator .calculator-table .table-body:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+body .calculator .calculator-table .table-body::-webkit-scrollbar {
+  display: none;
 }
 
 @-webkit-keyframes fadeIn {
@@ -261,21 +369,34 @@ body .calculator {
   }
 }
 
-@-webkit-keyframes fadeOut {
-  from {
-    opacity: 1;
+@media (min-width: 320px) {
+  body .landing .subtitle {
+    font-size: 18px;
   }
-  to {
-    opacity: 0;
+  body .landing .form .input {
+    font-size: 14px;
   }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
+  body .landing .form .submit {
+    font-size: 16px;
   }
-  to {
-    opacity: 0;
+  body .landing .results .results-list {
+    max-width: 256px;
+  }
+  body .landing .results .results-list .result {
+    font-size: 14px;
+  }
+  body .landing .results .food-name {
+    font-size: 16px;
+  }
+  body .landing .results .nutrients {
+    font-size: 14px;
+  }
+  body .landing .results .add-to-calculator {
+    font-size: 12px;
+  }
+  body .calculator {
+    height: 90vh;
+    bottom: -90vh;
   }
 }
 /*# sourceMappingURL=style.css.map */

@@ -83,17 +83,12 @@ body {
                     background-color: $dark-white;
                     box-shadow: 0px 0px 4px 1px #F0F0F0;
                     transition: .4s all ease-in-out;
+                    animation: fadeIn .4s ease 0s 1;
                     cursor: pointer;  
                     &:hover {                        
                         background-color: $green;
                         color: $white;
                     }
-                }                
-                .animation-fade-in {
-                    animation: fadeIn .4s ease 0s 1;
-                }
-                .animation-fade-out {
-                    animation: fadeOut .3s ease 0s 1;
                 }
             }
             .nutrients {
@@ -172,10 +167,87 @@ body {
         }
     }
     .calculator {
-        position: absolute;
-        border: 2px solid $green;
-        border-left: none;
-        top: 25%;
+        position: fixed;
+        bottom: -285px;
+        left: 0;
+        right: 0;
+        background-color: $white;
+        transition: all .7s ease-out;
+        .calculator-open {
+            position: relative;
+            display: inline-block;
+            min-width: 194px;
+            text-align: center;
+            padding: 12px 18px;
+            font-size: 18px;
+            color: $white;
+            background-color: $green;
+            cursor: pointer;
+            border: none;
+            .fa-calculator {
+                margin-left: 8px;
+            }
+        }
+        .calculator-table {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            .calculator-table-head {
+                min-width: 194px;             
+                .calculator-table-row {
+                    display: flex;
+                    flex-direction: column;
+                    .calculator-table-header {
+                        text-align: left;
+                        padding: 6px 12px;
+                        &:nth-child(2n) {
+                            background-color: $white;
+                        }
+                        &:nth-child(2n + 1) {
+                            background-color: $grey;
+                        }
+                    }
+                }
+            }
+            .table-body {
+                display: flex;
+                overflow-x: scroll;
+                overflow-y: hidden;
+                white-space: nowrap;
+                cursor: grab;
+                [class*=table-row-] {
+                    display: flex;
+                    flex-direction: column;
+                    animation: fadeIn .4s ease 0s 1;
+                    [class*=table-cell-] {
+                        min-width: 230px;
+                        padding: 6px 12px;
+                        text-align: right;
+                        &:nth-child(2n) {
+                            background-color: $white;
+                        }
+                        &:nth-child(2n + 1) {
+                            background-color: $grey;
+                        }
+                    }
+                    .table-cell-0 {
+                        text-align: center;
+                    }
+                    .table-cell-7 {
+                        padding: 4.5px 12px;
+                        [class*=delete-] {
+                            cursor: pointer;
+                        }
+                    }
+                }
+                &:active {
+                    cursor: grabbing;
+                }      
+                &::-webkit-scrollbar {
+                    display:none;
+                }                
+            }
+        }  
     }
 }
 
@@ -188,11 +260,57 @@ body {
     }
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
+@media (min-width: 320px) {
+    body {
+        .landing {
+            .subtitle {
+                font-size: 18px;
+            }
+            .form {
+                .input {
+                    font-size: 14px;
+                }
+                .submit {
+                    font-size: 16px;
+                }
+            }
+            .results {
+                .results-list {
+                    max-width: 256px;
+                    .result {
+                        font-size: 14px;
+                    }
+                }
+                .food-name {
+                    font-size: 16px;
+                }
+                .nutrients {
+                    font-size: 14px;
+                }
+                .add-to-calculator {
+                    font-size: 12px;
+                }
+            }
+        }
+        .calculator {
+            height: 90vh;
+            bottom: -90vh;
+        }
     }
-    to {
-        opacity: 0;
-    }
+    
+}
+@media (min-width: 576px) {
+      
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 1400px) {
+
 }
