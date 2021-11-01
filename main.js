@@ -3,6 +3,33 @@ let input = document.querySelector('.input');
 const foodsInCalcUnchanged = [];
 const foodsInCalcChanged = [];
 
+function countNutrients() {
+    const nutrientsSum = ["name", 0, 0, 0, 0, 0, 0, 0];
+    for(let i = 0; i < foodsInCalcChanged.length; i++) {
+        for(let j = 1; j < foodsInCalcChanged[i].length; j++) {
+            nutrientsSum[j] = (foodsInCalcChanged[i][j] + nutrientsSum[j]);
+        }
+    }
+    changeSum(nutrientsSum);
+}
+
+function changeSum(nutrientsSum) {
+    let row = document.querySelectorAll(".calculator-table-row");
+    row = row[row.length - 1];
+
+    const headers = row.querySelectorAll(".calculator-table-header");
+   
+    for(let i = 1; i < headers.length; i++) {
+        if(i == 1) {
+            headers[i].innerText = nutrientsSum[i].toFixed(0);
+
+        } else {
+            headers[i].innerText = nutrientsSum[i].toFixed(2);
+        }
+    }
+    
+}
+
 function showError(message) {
 
     const errorModal = document.querySelector(".connection-error-overlay");
@@ -28,14 +55,14 @@ function deleteNutritionRow(rowId) {
     rowToDelete.remove();
     for(let i = rowId + 1; i <= howManyRows; i++) {
         const changingRow = tableBody.querySelector(`.table-row-${i}`);
-        const tdInput = changingRow.querySelector(".table-cell-7");
-        const tdX = changingRow.querySelector(".table-cell-8");
-        const input = tdInput.querySelector(`.input-${i}`);
-        const x = tdInput.querySelector(`.delete-${i}`);
+        const tdWithDelete = changingRow.querySelector(".table-cell-8");
+        const input = tdWithDelete.querySelector(`.input-${i}`);
+        const deleteThisRow = tdWithDelete.querySelector(`.delete-${i}`);
         changingRow.className = `table-row-${i - 1}`;
         input.className = `input-${i - 1}`;
-        x.className = `fas fa-times delete-${i - 1}`;
-    }
+        deleteThisRow.className = `fas fa-times delete-${i - 1}`;
+    }    
+    countNutrients();
 }
 
 function changeNutritionAmounts(rowId, currentInput) {
@@ -55,6 +82,7 @@ function changeNutritionAmounts(rowId, currentInput) {
                 currentCell.innerText = currentChanged[i].toFixed(2);
             }
         }
+        countNutrients();
     });
 }
 
@@ -78,7 +106,7 @@ function addToCalculator(foodToCalc) {
     
     const tableCell = document.createElement("td");
     const input = document.createElement("input");
-    tableCell.className = "table-cell-7";
+    tableCell.className = "table-cell-8";
     input.type = "number";
     input.className = `input-${whereAmI}`;
     input.value = 100;
@@ -98,6 +126,8 @@ function addToCalculator(foodToCalc) {
     input.addEventListener('focus', function() {
         changeNutritionAmounts(Number(this.className.replace(/[^0-9]/g,'')), input);
     });
+
+    countNutrients();
 }
 
 function displayNutrients(foodObject) {
@@ -164,15 +194,32 @@ function displayNutrients(foodObject) {
     addToCalc.addEventListener('click', function() {
         const foodToCalc =[
             foodObject[6].name, 
-            foodObject[0].energy, 
-            foodObject[1].protein, 
-            foodObject[2].fats, 
-            foodObject[3].carbohydrates,
-            foodObject[4].sugars,
-            foodObject[5].fiber
+            Number(foodObject[0].energy), 
+            Number(foodObject[1].protein), 
+            Number(foodObject[2].fats), 
+            Number(foodObject[3].carbohydrates),
+            Number(foodObject[4].sugars),
+            Number(foodObject[5].fiber),
+            100
         ];
                 
         addToCalculator(foodToCalc);
+    });
+}
+
+function manageCalcPopUp() {
+    const calculator = document.querySelector(".calculator");
+    const calcOpen = document.querySelector(".calculator-open");
+    const calcTableHeight = document.querySelector(".calculator-table").clientHeight;
+    calculator.style.bottom = `-${calcTableHeight - 45}px`;
+    calcOpen.addEventListener('click', function(){
+        if(calcOpen.innerText == "Open calculator!") {
+            calculator.style.bottom = "0";
+            calcOpen.innerHTML = "Close calculator!<i class='fas fa-calculator'></i>";
+        } else {
+            calculator.style.bottom = `-${calcTableHeight - 45}px`;
+            calcOpen.innerHTML = "Open calculator!<i class='fas fa-calculator'></i>";
+        }
     });
 }
 
@@ -225,20 +272,12 @@ button.addEventListener('click', function() {
                                     {"name": processedResponse.foods[event.target.value].description}
                                 ];                                 
                                 displayNutrients(foodObject);
-
-                                const calculator = document.querySelector(".calculator");
-                                const calcOpen = document.querySelector(".calculator-open");
-                                const calcTableHeight = document.querySelector(".calculator-table").clientHeight;
-                                calculator.style.bottom = `-${calcTableHeight - 45}px`;
-                                calcOpen.addEventListener('click', function(){
-                                    if(calcOpen.innerText == "Open calculator!") {
-                                        calculator.style.bottom = "0";
-                                        calcOpen.innerHTML = "Close calculator!<i class='fas fa-calculator'></i>";
-                                    } else {
-                                        calculator.style.bottom = `-${calcTableHeight - 45}px`;
-                                        calcOpen.innerHTML = "Open calculator!<i class='fas fa-calculator'></i>";
-                                    }
-                                });
+                                const wasOpened = document.querySelector(".calculator").style.bottom;
+                                if(wasOpened) {
+                                    
+                                } else {
+                                    manageCalcPopUp();                                    
+                                }
                             }
                         });
                     } else {
