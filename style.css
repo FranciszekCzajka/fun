@@ -5,10 +5,10 @@
 
 body {
   font-family: 'Helvetica', sans-serif;
-  color: #020202;
+  color: #262926;
   padding: 0;
   margin: 0;
-  background-color: #FAFAFA;
+  background-color: #fafffa;
 }
 
 body .header {
@@ -28,7 +28,7 @@ body .header {
 }
 
 body .header .title {
-  color: #FAFAFA;
+  color: #fafffa;
   letter-spacing: 1.2px;
 }
 
@@ -51,7 +51,7 @@ body .landing {
 }
 
 body .landing .subtitle {
-  color: #020202;
+  color: #262926;
 }
 
 body .landing .form {
@@ -65,7 +65,7 @@ body .landing .form .input {
   border: none;
   font-size: 18px;
   padding: 12px 26px;
-  color: #020202;
+  color: #262926;
   background-color: #DFDFDF;
 }
 
@@ -77,17 +77,16 @@ body .landing .form .submit {
   letter-spacing: 1.2px;
   padding: 12px;
   cursor: pointer;
-  -webkit-transition: .3s all ease-in-out;
-  transition: .3s all ease-in-out;
+  -webkit-transition: .4s all ease-in-out;
+  transition: .4s all ease-in-out;
 }
 
 body .landing .form .submit:hover {
   background-color: #3B7555;
-  color: #FAFAFA;
+  color: #fafffa;
 }
 
 body .landing .results .food-name {
-  margin: 12px;
   text-align: center;
   -webkit-animation: fadeIn .4s ease 0s 1;
           animation: fadeIn .4s ease 0s 1;
@@ -121,7 +120,7 @@ body .landing .results .results-list .result {
 
 body .landing .results .results-list .result:hover {
   background-color: #3B7555;
-  color: #FAFAFA;
+  color: #fafffa;
 }
 
 body .landing .results .nutrients {
@@ -129,11 +128,12 @@ body .landing .results .nutrients {
   -webkit-animation: fadeIn .4s ease 0s 1;
           animation: fadeIn .4s ease 0s 1;
   border-bottom: 2px #D0D0D0 solid;
+  margin: 0 auto;
 }
 
 body .landing .results .nutrients .nutrients-header {
   background-color: #3B7555;
-  color: #FAFAFA;
+  color: #fafffa;
   font-weight: normal;
 }
 
@@ -151,12 +151,19 @@ body .landing .results .nutrients .nutrients-cell-unit, body .landing .results .
 
 body .landing .results .add-to-calculator {
   text-align: center;
-  margin-top: 16px;
+  margin: 16px auto;
   padding: 12px;
   font-size: 14px;
   background-color: #3B7555;
-  color: #FAFAFA;
+  color: #fafffa;
   cursor: pointer;
+  max-width: 336px;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
+}
+
+body .landing .results .add-to-calculator:hover {
+  background-color: #301C27;
 }
 
 body .connection-error-overlay {
@@ -177,7 +184,7 @@ body .connection-error-overlay {
 body .connection-error-overlay .connection-error {
   -ms-flex-preferred-size: 350px;
       flex-basis: 350px;
-  background-color: #FAFAFA;
+  background-color: #fafffa;
   border-radius: 12px;
 }
 
@@ -190,7 +197,7 @@ body .connection-error-overlay .connection-error .connection-header {
       -ms-flex-direction: row;
           flex-direction: row;
   background-color: #3B7555;
-  color: #FAFAFA;
+  color: #fafffa;
   border-radius: 12px 12px 0 0;
 }
 
@@ -215,8 +222,8 @@ body .connection-error-overlay .connection-error .connection-header .connection-
 
 body .connection-error-overlay .connection-error .connection-header .connection-header-right .connection-x {
   cursor: pointer;
-  -webkit-transition: all .3s ease-in-out;
-  transition: all .3s ease-in-out;
+  -webkit-transition: all .4s ease-in-out;
+  transition: all .4s ease-in-out;
 }
 
 body .connection-error-overlay .connection-error .connection-header .connection-header-right .connection-x:hover {
@@ -232,7 +239,7 @@ body .calculator {
   position: fixed;
   left: 0;
   right: 0;
-  background-color: #FAFAFA;
+  background-color: #fafffa;
   -webkit-transition: all .7s ease-out;
   transition: all .7s ease-out;
 }
@@ -244,7 +251,7 @@ body .calculator .calculator-open {
   text-align: center;
   padding: 12px 18px;
   font-size: 18px;
-  color: #FAFAFA;
+  color: #fafffa;
   background-color: #3B7555;
   cursor: pointer;
   border: none;
@@ -265,10 +272,6 @@ body .calculator .calculator-table {
   height: 100%;
 }
 
-body .calculator .calculator-table .calculator-table-head {
-  min-width: 194px;
-}
-
 body .calculator .calculator-table .calculator-table-head .calculator-table-row {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -285,7 +288,7 @@ body .calculator .calculator-table .calculator-table-head .calculator-table-row 
 }
 
 body .calculator .calculator-table .calculator-table-head .calculator-table-row .calculator-table-header:nth-child(2n) {
-  background-color: #FAFAFA;
+  background-color: #fafffa;
 }
 
 body .calculator .calculator-table .calculator-table-head .calculator-table-row .calculator-table-header:nth-child(2n + 1) {
@@ -322,7 +325,7 @@ body .calculator .calculator-table .table-body [class*=table-row-] [class*=table
 }
 
 body .calculator .calculator-table .table-body [class*=table-row-] [class*=table-cell-]:nth-child(2n) {
-  background-color: #FAFAFA;
+  background-color: #fafffa;
 }
 
 body .calculator .calculator-table .table-body [class*=table-row-] [class*=table-cell-]:nth-child(2n + 1) {
@@ -393,16 +396,50 @@ body .calculator .calculator-table .table-body::-webkit-scrollbar {
   body .landing .results .add-to-calculator {
     font-size: 12px;
   }
+}
+
+@media (min-width: 1400px) {
+  body .header .title {
+    font-size: 32px;
+  }
+  body .landing .subtitle {
+    font-size: 26px;
+  }
+  body .landing .form .input {
+    font-size: 20px;
+  }
+  body .landing .form .submit {
+    font-size: 20px;
+  }
+  body .landing .results .food-name {
+    max-width: 480px;
+    margin: 24px auto;
+  }
+  body .landing .results .results-list {
+    max-width: 360px;
+  }
+  body .landing .results .results-list .result {
+    font-size: 18px;
+  }
+  body .landing .results .food-name {
+    font-size: 22px;
+  }
+  body .landing .results .nutrients {
+    font-size: 18px;
+  }
+  body .landing .results .add-to-calculator {
+    font-size: 16px;
+  }
   body .calculator {
     width: 100%;
     height: 90vh;
     bottom: -90vh;
   }
   body .calculator .calculator-table {
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+        -ms-flex-direction: row;
+            flex-direction: row;
   }
   body .calculator .calculator-table .calculator-table-head {
     display: -webkit-box;
@@ -412,10 +449,9 @@ body .calculator .calculator-table .table-body::-webkit-scrollbar {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    width: 100%;
   }
   body .calculator .calculator-table .calculator-table-head .calculator-table-row {
-    width: 50%;
+    width: 190px;
   }
   body .calculator .calculator-table .calculator-table-head .calculator-table-row:nth-child(2) .calculator-table-header {
     text-align: right;

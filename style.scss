@@ -1,10 +1,11 @@
-$white: #FAFAFA;
+$white: #fafffa;
 $dark-white: #F0F0F0;
-$light-green: #8EE4AF;
 $green: #3B7555;
-$black: #020202;
+$second-green: #41E841;
+$black: #262926;
 $grey: #DFDFDF;
 $dark-grey: #D0D0D0;
+$pink: #301C27;
 $red: #ff4f67;
 
 * {
@@ -58,7 +59,7 @@ body {
                 letter-spacing: 1.2px;
                 padding: 12px;
                 cursor: pointer;
-                transition: .3s all ease-in-out;
+                transition: .4s all ease-in-out;
                 &:hover {
                     background-color: $green;
                     color: $white;
@@ -67,7 +68,6 @@ body {
         }
         .results {
             .food-name {
-                margin: 12px;
                 text-align: center;
                 animation: fadeIn .4s ease 0s 1;
             }
@@ -95,6 +95,7 @@ body {
                 border-collapse: collapse;
                 animation: fadeIn .4s ease 0s 1;
                 border-bottom: 2px $dark-grey solid;
+                margin: 0 auto;
                 .nutrients-header {
                     background-color: $green;
                     color: $white;
@@ -112,12 +113,17 @@ body {
             }
             .add-to-calculator {
                 text-align: center;
-                margin-top: 16px;
+                margin: 16px auto;
                 padding: 12px;
                 font-size: 14px;
                 background-color: $green;
                 color: $white;
                 cursor: pointer;
+                max-width: 336px;
+                transition: all .4s ease-in-out;
+                &:hover {
+                    background-color: $pink;
+                }
             }
         }
     }
@@ -153,7 +159,7 @@ body {
                     justify-content: flex-end;   
                     .connection-x {
                         cursor: pointer;
-                        transition: all .3s ease-in-out;
+                        transition: all .4s ease-in-out;
                         &:hover {
                             color: $red;
                         }
@@ -191,8 +197,7 @@ body {
             display: flex;
             flex-direction: row;
             height: 100%;
-            .calculator-table-head {
-                min-width: 194px;             
+            .calculator-table-head {      
                 .calculator-table-row {
                     display: flex;
                     flex-direction: column;
@@ -291,33 +296,9 @@ body {
                 }
             }
         }
-        .calculator {
-            width: 100%;
-            height: 90vh;
-            bottom: -90vh;
-            .calculator-table {
-                flex-direction: column;
-                .calculator-table-head {
-                    display: flex;
-                    flex-direction: row;
-                    width: 100%;
-                    .calculator-table-row {
-                        width: 50%;
-                        &:nth-child(2) {
-                            .calculator-table-header {
-                                text-align: right;
-                                &:nth-child(1) {
-                                    text-align: center;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
+    }    
 }
+
 @media (min-width: 576px) {
 
 }
@@ -331,4 +312,68 @@ body {
 
 }
 @media (min-width: 1400px) {
+    body {
+        .header {
+            .title {
+                font-size: 32px;
+            }
+        }
+        .landing {
+            .subtitle {
+                font-size: 26px;
+            }
+            .form {
+                .input {
+                    font-size: 20px;
+                }
+                .submit {
+                    font-size: 20px;
+                }
+            }
+            .results {
+                .food-name {
+                    max-width: 480px;
+                    margin: 24px auto;
+                }
+                .results-list {
+                    max-width: 360px;
+                    .result {
+                        font-size: 18px;
+                    }
+                }
+                .food-name {
+                    font-size: 22px;
+                }
+                .nutrients {
+                    font-size: 18px;
+                }
+                .add-to-calculator {
+                    font-size: 16px;
+                }
+            }
+        }        
+        .calculator {
+            width: 100%;
+            height: 90vh;
+            bottom: -90vh;
+            .calculator-table {
+                flex-direction: row;
+                .calculator-table-head {
+                    display: flex;
+                    flex-direction: row;
+                    .calculator-table-row {
+                        width: 190px;
+                        &:nth-child(2) {
+                            .calculator-table-header {
+                                text-align: right;
+                                &:nth-child(1) {
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
