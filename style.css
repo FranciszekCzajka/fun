@@ -3,7 +3,9 @@ html {
           box-sizing: border-box;
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   -webkit-box-sizing: inherit;
           box-sizing: inherit;
 }
@@ -11,5 +13,113 @@ html {
 body {
   margin: 0;
   padding: 0;
+  background-color: #fafffa;
+  color: #262926;
 }
-/*# sourceMappingURL=styleV2.css.map */
+
+body .header {
+  width: 100%;
+  height: 10vh;
+  background-color: #157145;
+  color: #fafffa;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Staatliches", cursive;
+  letter-spacing: 1.2px;
+  font-size: 48px;
+}
+
+body .landing-page {
+  width: 100%;
+  height: 90vh;
+  font-family: "Roboto", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 10vh;
+}
+
+body .landing-page .content {
+  width: 678px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .landing-page .content .heading {
+  text-align: center;
+  margin-top: 0;
+}
+
+body .landing-page .content .form .input {
+  border-radius: 6px 0 0 6px;
+  padding: 6px 8px;
+  font-size: 16px;
+  border-color: #157145;
+  border-style: solid;
+}
+
+body .landing-page .content .form .submit {
+  border-radius: 0 6px 6px 0;
+  padding: 6px 8px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fafffa;
+  border-color: #157145;
+  border-style: solid;
+  background-color: #57a773;
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+}
+
+body .landing-page .content .form .submit:hover {
+  background-color: #157145;
+}
+
+body .landing-page .content .results {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+body .landing-page .content .results .food-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+body .landing-page .content .results .food-list .food-list-element {
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  -webkit-transition: all ease-in-out 0.3s;
+  transition: all ease-in-out 0.3s;
+}
+
+body .landing-page .content .results .food-list .food-list-element:hover {
+  color: #fafffa;
+  background-color: #57a773;
+}
+/*# sourceMappingURL=style.css.map */
