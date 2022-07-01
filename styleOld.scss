@@ -1,0 +1,379 @@
+$white: #fafffa;
+$dark-white: #F0F0F0;
+$green: #3B7555;
+$second-green: #41E841;
+$black: #262926;
+$grey: #DFDFDF;
+$dark-grey: #D0D0D0;
+$pink: #301C27;
+$red: #ff4f67;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica', sans-serif;
+    color: $black;
+    padding: 0;
+    margin: 0;
+    background-color: $white;
+    .header {
+        width: 100%;
+        height: 9vh;
+        min-height: 80px;
+        background-color: $green;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .title {
+            color: $white;
+            letter-spacing: 1.2px;
+        }
+    }
+    .landing {
+        width: 100%;
+        padding: 32px 16px;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: column;
+        .subtitle {
+            color: $black;
+        }
+        .form {
+            display: flex;
+            margin: 16px;
+            .input {
+                border: none;
+                font-size: 18px;
+                padding: 12px 26px;
+                color: $black;
+                background-color: $grey;
+            }
+            .submit {
+                border: 0;
+                background-color: $dark-grey;
+                font-size: 18px;
+                font-weight: bold;
+                letter-spacing: 1.2px;
+                padding: 12px;
+                cursor: pointer;
+                transition: .4s all ease-in-out;
+                &:hover {
+                    background-color: $green;
+                    color: $white;
+                }
+            }
+        }
+        .results {
+            .food-name {
+                text-align: center;
+                animation: fadeIn .4s ease 0s 1;
+            }
+            .results-list {
+                display: flex;
+                flex-direction: column;
+                list-style: none;
+                padding: 0;
+                width: 314px;
+                .result {
+                    padding: 16px;
+                    margin: 6px 0;
+                    background-color: $dark-white;
+                    box-shadow: 0px 0px 4px 1px #F0F0F0;
+                    transition: .4s all ease-in-out;
+                    animation: fadeIn .4s ease 0s 1;
+                    cursor: pointer;  
+                    &:hover {                        
+                        background-color: $green;
+                        color: $white;
+                    }
+                }
+            }
+            .nutrients {
+                border-collapse: collapse;
+                animation: fadeIn .4s ease 0s 1;
+                border-bottom: 2px $dark-grey solid;
+                margin: 0 auto;
+                .nutrients-header {
+                    background-color: $green;
+                    color: $white;
+                    font-weight: normal;
+                }
+                .nutrients-row:nth-child(2n) {
+                    background-color: $grey;
+                }
+                .nutrients-header, .nutrients-cell {
+                    padding: 8px;
+                }
+                .nutrients-cell-unit, .nutrients-cell-amount {
+                    text-align: right;
+                }
+            }
+            .add-to-calculator {
+                text-align: center;
+                margin: 16px auto;
+                padding: 12px;
+                font-size: 14px;
+                background-color: $green;
+                color: $white;
+                cursor: pointer;
+                max-width: 336px;
+                transition: all .4s ease-in-out;
+                &:hover {
+                    background-color: $pink;
+                }
+            }
+        }
+    }
+    .connection-error-overlay {
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        background-color: rgba($color: #000000, $alpha: 0.7);
+        justify-content: center;
+        align-items: center;
+        .connection-error {
+            flex-basis: 350px;
+            background-color: $white;
+            border-radius: 12px;
+            .connection-header {
+                display: flex;
+                flex-direction: row;
+                background-color: $green;
+                color: $white;
+                border-radius: 12px 12px 0 0;
+                .connection-header-left, 
+                .connection-header-right {   
+                    flex-basis: 50%;
+                    padding: 16px;
+                    font-size: 22px;
+                    font-weight: bold;
+                    letter-spacing: 1.2px;
+                }
+                .connection-header-right {
+                    display: flex;
+                    justify-content: flex-end;   
+                    .connection-x {
+                        cursor: pointer;
+                        transition: all .4s ease-in-out;
+                        &:hover {
+                            color: $red;
+                        }
+                    }
+                }
+            }
+            .connection-message {
+                font-size: 20px;
+                padding: 18px;
+            }
+        }
+    }
+    .calculator {
+        position: fixed;
+        left: 0;
+        right: 0;
+        background-color: $white;
+        transition: all .7s ease-out;
+        .calculator-open {
+            position: relative;
+            display: inline-block;
+            min-width: 194px;
+            text-align: center;
+            padding: 12px 18px;
+            font-size: 18px;
+            color: $white;
+            background-color: $green;
+            cursor: pointer;
+            border: none;
+            .fa-calculator {
+                margin-left: 8px;
+            }
+        }
+        .calculator-table {
+            display: flex;
+            flex-direction: row;
+            height: 100%;
+            .calculator-table-head {      
+                .calculator-table-row {
+                    display: flex;
+                    flex-direction: column;
+                    .calculator-table-header {
+                        text-align: left;
+                        padding: 6px 12px;
+                        &:nth-child(2n) {
+                            background-color: $white;
+                        }
+                        &:nth-child(2n + 1) {
+                            background-color: $grey;
+                        }
+                    }
+                }
+            }
+            .table-body {
+                display: flex;
+                overflow-x: scroll;
+                overflow-y: hidden;
+                white-space: nowrap;
+                cursor: grab;
+                [class*=table-row-] {
+                    display: flex;
+                    flex-direction: column;
+                    animation: fadeIn .4s ease 0s 1;
+                    [class*=table-cell-] {
+                        min-width: 230px;
+                        padding: 6px 12px;
+                        text-align: right;
+                        &:nth-child(2n) {
+                            background-color: $white;
+                        }
+                        &:nth-child(2n + 1) {
+                            background-color: $grey;
+                        }
+                    }
+                    .table-cell-0 {
+                        text-align: center;
+                    }
+                    .table-cell-7 {
+                        padding: 4.5px 12px;
+                        [class*=delete-] {
+                            cursor: pointer;
+                        }
+                    }
+                }
+                &:active {
+                    cursor: grabbing;
+                }      
+                &::-webkit-scrollbar {
+                    display:none;
+                }                
+            }
+        }  
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (min-width: 320px) {
+    body {
+        .landing {
+            .subtitle {
+                font-size: 18px;
+            }
+            .form {
+                .input {
+                    font-size: 14px;
+                }
+                .submit {
+                    font-size: 16px;
+                }
+            }
+            .results {
+                .results-list {
+                    max-width: 256px;
+                    .result {
+                        font-size: 14px;
+                    }
+                }
+                .food-name {
+                    font-size: 16px;
+                }
+                .nutrients {
+                    font-size: 14px;
+                }
+                .add-to-calculator {
+                    font-size: 12px;
+                }
+            }
+        }
+    }    
+}
+
+@media (min-width: 576px) {
+
+}
+@media (min-width: 768px) {
+
+}
+@media (min-width: 992px) {
+
+}
+@media (min-width: 1200px) {
+
+}
+@media (min-width: 1400px) {
+    body {
+        .header {
+            .title {
+                font-size: 32px;
+            }
+        }
+        .landing {
+            .subtitle {
+                font-size: 26px;
+            }
+            .form {
+                .input {
+                    font-size: 20px;
+                }
+                .submit {
+                    font-size: 20px;
+                }
+            }
+            .results {
+                .food-name {
+                    max-width: 480px;
+                    margin: 24px auto;
+                }
+                .results-list {
+                    max-width: 360px;
+                    .result {
+                        font-size: 18px;
+                    }
+                }
+                .food-name {
+                    font-size: 22px;
+                }
+                .nutrients {
+                    font-size: 18px;
+                }
+                .add-to-calculator {
+                    font-size: 16px;
+                }
+            }
+        }        
+        .calculator {
+            width: 100%;
+            height: 90vh;
+            bottom: -90vh;
+            .calculator-table {
+                flex-direction: row;
+                .calculator-table-head {
+                    display: flex;
+                    flex-direction: row;
+                    .calculator-table-row {
+                        width: 190px;
+                        &:nth-child(2) {
+                            .calculator-table-header {
+                                text-align: right;
+                                &:nth-child(1) {
+                                    text-align: center;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

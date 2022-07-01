@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="title">FUN</h1>
+    </header>
+    <div class="landing">
+        <h2 class="subtitle">Check the nutrition information!</h2>
+        <div class="form">
+            <input class="form-element input" type="text" />
+            <button class="form-element submit" type="submit"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="results"></div>       
+    </div>
+    <div class="connection-error-overlay">
+        <div class="connection-error">
+            <div class="connection-header">
+                <div class="connection-header-left">
+                    Error!
+                </div>
+                <div class="connection-header-right">
+                    <div class="connection-x">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="connection-message"></div>
+        </div>
+    </div>
+    <div class="calculator">
+        <button class="calculator-open">Open calculator!<i class="fas fa-calculator"></i></button>
+        <table class="calculator-table">
+            <thead class="calculator-table-head">
+                <tr class="calculator-table-row">
+                    <th class="calculator-table-header">Name</th>
+                    <th class="calculator-table-header">Energy</th>
+                    <th class="calculator-table-header">Protein</th>
+                    <th class="calculator-table-header">Fats</th>
+                    <th class="calculator-table-header">Carbohydrates</th>
+                    <th class="calculator-table-header">Sugars</th>
+                    <th class="calculator-table-header">Fiber</th>
+                    <th class="calculator-table-header">Amout (g)</th>
+                </tr>
+                <tr class="calculator-table-row">
+                    <th class="calculator-table-header">Sum</th>
+                    <th class="calculator-table-header">0</th>
+                    <th class="calculator-table-header">0</th>
+                    <th class="calculator-table-header">0</th>
+                    <th class="calculator-table-header">0</th>
+                    <th class="calculator-table-header">0</th>
+                    <th class="calculator-table-header">0</th>
+                    <th class="calculator-table-header">0</th>
+                </tr>
+            </thead>
+            <tbody class="table-body">
+
+            </tbody>
+        </table>
+    </div>
+    <script src="./main.js"></script>
+    <script src="./slider.js"></script>
+</body>
+</html>
