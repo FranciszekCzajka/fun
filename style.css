@@ -98,6 +98,10 @@ body .landing-page .content .results {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -121,5 +125,30 @@ body .landing-page .content .results .food-list .food-list-element {
 body .landing-page .content .results .food-list .food-list-element:hover {
   color: #fafffa;
   background-color: #57a773;
+}
+
+body .landing-page .content .results .nutrients-table {
+  border-collapse: collapse;
+}
+
+body .landing-page .content .results .nutrients-table .nutrients-row-headers {
+  background-color: #dfdfdf;
+}
+
+body .landing-page .content .results .nutrients-table .nutrients-row-headers .nutrients-header {
+  padding: 12px;
+}
+
+body .landing-page .content .results .nutrients-table .nutrients-row-information .nutrients-cell {
+  text-align: right;
+  padding: 12px;
+}
+
+body .landing-page .content .results .nutrients-table .nutrients-row-information .nutrients-cell:first-child {
+  text-align: left;
+}
+
+body .landing-page .content .results .nutrients-table .nutrients-row-information:nth-child(odd) {
+  background-color: #dfdfdf;
 }
 /*# sourceMappingURL=style.css.map */
