@@ -104,7 +104,7 @@ button.addEventListener("click", function () {
     const results = document.querySelector(".results");
     results.innerHTML = "";
 
-    const API_KEY = "nBKTTixEru2BA0nzf0DBnapEY5Tc6iERJ3lXpUU8";
+    const API_KEY = process.env.API_KEY;
     const API_URL = "https://api.nal.usda.gov";
     const FOOD_URL = `${API_URL}/fdc/v1/foods/search?query=${input.value}&dataType=Survey%20%28FNDDS%29&pageSize=10&pageNumber=1&sortBy=dataType.keyword&api_key=${API_KEY}`;
 
