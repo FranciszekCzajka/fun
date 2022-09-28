@@ -126,6 +126,20 @@ function createFood() {
             }
         }
 
+        function nextInLine() {
+            let counter = 0;
+            function onlyOne(valueOfIndex) {
+                const varI = valueOfIndex[counter];
+                counter++;
+                if (counter === 9) {
+                    counter = 0;
+                }
+                return varI;
+            }
+
+            return onlyOne;
+        }
+
         const oneAtATime = nextInLine();
 
         const sumCulumn = document.querySelector(".calculator-table-row-sum");
