@@ -41,8 +41,6 @@ function displayNutrients(food) {
 
     table.appendChild(tableHeadersRow);
 
-    console.log(food);
-
     const nutrients = [
         { name: "Energy", amount: food.energy },
         { name: "Carbohydrates", amount: food.carbohydrates },
@@ -70,14 +68,122 @@ function displayNutrients(food) {
             table.appendChild(tableRow);
         }
     }
-
-    const tableRow = addRow("Carbohydrates", food.carbohydrates, "g");
 }
 
 function createFood() {
-    const arrFoods = [];
-
+    let arrFoods = [];
     let idCounter = 0;
+
+    function extractValues(foodObject, multiplier) {
+        return (values = [
+            foodObject.name,
+            foodObject.energy * multiplier,
+            foodObject.carbohydrates * multiplier,
+            foodObject.sugars * multiplier,
+            foodObject.protein * multiplier,
+            foodObject.fats * multiplier,
+            foodObject.fiber * multiplier,
+            foodObject.amount * multiplier,
+        ]);
+    }
+
+    function sumNutrients() {
+        const sumOfNutrients = [];
+        const sum = [];
+        const valuesLines = document.querySelectorAll(".calculator-table-row");
+
+        for (let i = 1; i < valuesLines.length; i++) {
+            const tempValues = valuesLines[i].innerText.split("\n");
+            tempValues.pop();
+            const cells = valuesLines[i].querySelectorAll(".calculator-cell");
+            const lastLine = cells[cells.length - 1];
+            const input = lastLine.querySelector("input");
+            for (let j = 1; j < tempValues.length; j++) {
+                tempValues[j] = Number(tempValues[j]);
+            }
+            tempValues.push(Number(input.value));
+            sum.push(tempValues);
+        }
+
+        if (sum.length) {
+            for (let i = 0; i < sum.length; i++) {
+                for (let j = 0; j < sum[i].length; j++) {
+                    if (j === 0) {
+                        sumOfNutrients[j] = "Sum";
+                    } else {
+                        sumOfNutrients[j] =
+                            (sumOfNutrients[j] || 0) + sum[i][j];
+                    }
+                }
+            }
+        } else {
+            for (i = 0; i < 8; i++) {
+                if (i === 0) {
+                    sumOfNutrients[i] = "Sum";
+                } else {
+                    sumOfNutrients[i] = 0;
+                }
+            }
+        }
+
+        const oneAtATime = nextInLine();
+
+        const sumCulumn = document.querySelector(".calculator-table-row-sum");
+        const sumColumnValues = sumCulumn.querySelectorAll(
+            ".calculator-table-header"
+        );
+        sumColumnValues.forEach((element) => {
+            element.innerText = oneAtATime(sumOfNutrients);
+        });
+
+        console.log(sum);
+    }
+
+    function changeValues(foodObject, tableRow, tableCellInput) {
+        const newValues = extractValues(foodObject, tableCellInput.value / 100);
+
+        const createdCells = tableRow.querySelectorAll(".calculator-cell");
+
+        for (let i = 1; i < createdCells.length - 1; i++) {
+            createdCells[i].innerText = newValues[i];
+        }
+
+        sumNutrients();
+    }
+
+    function addToCalculator(foodObject) {
+        const values = extractValues(foodObject, 1);
+
+        const calculator = document.querySelector(".table-body");
+        const tableRow = document.createElement("tr");
+        tableRow.className = "calculator-table-row";
+        for (let i = 0; i < values.length - 1; i++) {
+            const tableCell = document.createElement("td");
+            tableCell.className = "calculator-cell";
+            tableCell.innerText = values[i];
+            tableRow.append(tableCell);
+        }
+        const tableCell = document.createElement("td");
+        const tableCellInput = document.createElement("input");
+        tableCellInput.type = "number";
+        tableCell.className = "calculator-cell";
+        tableCellInput.value = values[7];
+        tableCellInput.addEventListener("keyup", () => {
+            changeValues(foodObject, tableRow, tableCellInput);
+        });
+        const tableCellX = document.createElement("i");
+        tableCellX.className = "fa-solid fa-trash-can trash-can";
+        tableCellX.addEventListener("click", function () {
+            tableRow.remove();
+            foodObject.delete();
+            sumNutrients();
+        });
+        tableCell.append(tableCellInput);
+        tableCell.append(tableCellX);
+        tableRow.append(tableCell);
+        calculator.appendChild(tableRow);
+        sumNutrients();
+    }
 
     class FoodCreator {
         constructor(foodObject) {
@@ -89,12 +195,18 @@ function createFood() {
             this.carbohydrates = foodObject.foodNutrients[2].value;
             this.sugars = foodObject.foodNutrients[8].value;
             this.fiber = foodObject.foodNutrients[9].value;
+            this.amount = 100;
         }
         add() {
             arrFoods[idCounter] = this;
             idCounter++;
+            addToCalculator(this);
+        }
+        delete() {
+            arrFoods.splice(arrFoods.indexOf(this), 1);
         }
     }
+
     return FoodCreator;
 }
 
@@ -104,7 +216,7 @@ button.addEventListener("click", function () {
     const results = document.querySelector(".results");
     results.innerHTML = "";
 
-    const API_KEY = process.env.API_KEY;
+    const API_KEY = "Pv5tp3ouhHnI2AHNO7VLPUlDVRaGdAdQftXvxLAK";
     const API_URL = "https://api.nal.usda.gov";
     const FOOD_URL = `${API_URL}/fdc/v1/foods/search?query=${input.value}&dataType=Survey%20%28FNDDS%29&pageSize=10&pageNumber=1&sortBy=dataType.keyword&api_key=${API_KEY}`;
 
@@ -120,7 +232,7 @@ button.addEventListener("click", function () {
             const foods = processedResponse.foods.map(function (food) {
                 return food.description;
             });
-            const foodsList = document.createElement("ol");
+            const foodsList = document.createElement("ul");
             foodsList.className = "food-list";
             results.appendChild(foodsList);
             const foodList = document.querySelector(".food-list");
