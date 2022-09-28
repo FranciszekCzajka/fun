@@ -94,7 +94,6 @@ function createFood() {
 
         for (let i = 1; i < valuesLines.length; i++) {
             const tempValues = valuesLines[i].innerText.split("\n");
-            tempValues.pop();
             const cells = valuesLines[i].querySelectorAll(".calculator-cell");
             const lastLine = cells[cells.length - 1];
             const input = lastLine.querySelector("input");
@@ -149,8 +148,6 @@ function createFood() {
         sumColumnValues.forEach((element) => {
             element.innerText = oneAtATime(sumOfNutrients);
         });
-
-        console.log(sum);
     }
 
     function changeValues(foodObject, tableRow, tableCellInput) {
