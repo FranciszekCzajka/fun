@@ -68,6 +68,11 @@ function displayNutrients(food) {
             table.appendChild(tableRow);
         }
     }
+
+    const button = document.createElement("button");
+    button.innerText = "Add to calculator";
+    button.className = "add-to-calculator";
+    results.append(button);
 }
 
 function createFood() {
@@ -263,8 +268,10 @@ button.addEventListener("click", function () {
                             foods.indexOf(foodFromList.target.innerText)
                         ]
                     );
-                    food.add();
                     displayNutrients(food);
+                    const buttonToAdd =
+                        document.querySelector(".add-to-calculator");
+                    buttonToAdd.addEventListener("click", () => food.add());
                 }
             });
         });
