@@ -186,10 +186,29 @@ body .calculator .calculator-table {
   display: flex;
 }
 
+body .calculator .calculator-table .calculator-table-head {
+  white-space: nowrap;
+}
+
 body .calculator .calculator-table .table-body {
+  overflow-x: scroll;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+body .calculator .calculator-table .table-body .calculator-table-row-sum {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+body .calculator .calculator-table .calculator-table-header:nth-child(odd) {
+  background-color: #d0d0d0;
 }
 
 body .calculator .calculator-table-row {
@@ -206,13 +225,7 @@ body .calculator .calculator-table-row .calculator-cell .trash-can {
   cursor: pointer;
 }
 
-body .calculator .calculator-table-row-sum {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+body .calculator .calculator-table-row .calculator-cell:nth-child(odd) {
+  background-color: #d0d0d0;
 }
 /*# sourceMappingURL=style.css.map */

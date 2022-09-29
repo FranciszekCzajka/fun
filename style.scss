@@ -144,8 +144,21 @@ body {
         width: 100%;
         .calculator-table {
             display: flex;
+            .calculator-table-head {
+                white-space: nowrap;
+            }
             .table-body {
+                overflow-x: scroll;
                 display: flex;
+                .calculator-table-row-sum {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+            .calculator-table-header {
+                &:nth-child(odd) {
+                    background-color: $dark-grey;
+                }
             }
         }
         .calculator-table-row {
@@ -155,11 +168,10 @@ body {
                 .trash-can {
                     cursor: pointer;
                 }
+                &:nth-child(odd) {
+                    background-color: $dark-grey;
+                }
             }
-        }
-        .calculator-table-row-sum {
-            display: flex;
-            flex-direction: column;
         }
     }
 }
