@@ -42,12 +42,12 @@ function displayNutrients(food) {
     table.appendChild(tableHeadersRow);
 
     const nutrients = [
-        { name: "Energy", amount: food.energy },
-        { name: "Carbohydrates", amount: food.carbohydrates },
-        { name: "Sugars", amount: food.sugars },
-        { name: "Protein", amount: food.protein },
-        { name: "Fats", amount: food.fats },
-        { name: "Fiber", amount: food.fiber },
+        { name: "Energy", amount: food.energy.toFixed(0) },
+        { name: "Carbohydrates", amount: food.carbohydrates.toFixed(2) },
+        { name: "Sugars", amount: food.sugars.toFixed(2) },
+        { name: "Protein", amount: food.protein.toFixed(2) },
+        { name: "Fats", amount: food.fats.toFixed(2) },
+        { name: "Fiber", amount: food.fiber.toFixed(2) },
         {},
     ];
 
@@ -82,13 +82,13 @@ function createFood() {
     function extractValues(foodObject, multiplier) {
         return (values = [
             foodObject.name,
-            foodObject.energy * multiplier,
-            foodObject.carbohydrates * multiplier,
-            foodObject.sugars * multiplier,
-            foodObject.protein * multiplier,
-            foodObject.fats * multiplier,
-            foodObject.fiber * multiplier,
-            foodObject.amount * multiplier,
+            (foodObject.energy * multiplier).toFixed(0),
+            (foodObject.carbohydrates * multiplier).toFixed(2),
+            (foodObject.sugars * multiplier).toFixed(2),
+            (foodObject.protein * multiplier).toFixed(2),
+            (foodObject.fats * multiplier).toFixed(2),
+            (foodObject.fiber * multiplier).toFixed(2),
+            (foodObject.amount * multiplier).toFixed(2),
         ]);
     }
 
@@ -114,9 +114,14 @@ function createFood() {
                 for (let j = 0; j < sum[i].length; j++) {
                     if (j === 0) {
                         sumOfNutrients[j] = "Sum";
-                    } else {
+                    } else if (j === 1) {
                         sumOfNutrients[j] =
                             (sumOfNutrients[j] || 0) + sum[i][j];
+                    } else {
+                        sumOfNutrients[j] = Number(sumOfNutrients[j]);
+                        sumOfNutrients[j] =
+                            (sumOfNutrients[j] || 0) + sum[i][j];
+                        sumOfNutrients[j] = sumOfNutrients[j].toFixed(2);
                     }
                 }
             }
