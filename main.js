@@ -265,9 +265,9 @@ button.addEventListener("click", function () {
             });
 
             foodList.addEventListener("click", function (foodFromList) {
-                input.value = "";
-                results.innerHTML = "";
                 if (foodFromList.target.tagName == "LI") {
+                    input.value = "";
+                    results.innerHTML = "";
                     const food = new myNewFood(
                         foodsResponse[
                             foods.indexOf(foodFromList.target.innerText)

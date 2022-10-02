@@ -15,6 +15,8 @@ body {
   padding: 0;
   background-color: #fafffa;
   color: #262926;
+  overflow: hidden;
+  font-family: "Roboto", sans-serif;
 }
 
 body .header {
@@ -39,7 +41,6 @@ body .header {
 body .landing-page {
   width: 100%;
   height: 90vh;
-  font-family: "Roboto", sans-serif;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -227,5 +228,90 @@ body .calculator .calculator-table-row .calculator-cell .trash-can {
 
 body .calculator .calculator-table-row .calculator-cell:nth-child(odd) {
   background-color: #d0d0d0;
+}
+
+body .footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+
+body .footer .footer-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  list-style: none;
+}
+
+body .footer .footer-list .footer-list-element:first-child {
+  -ms-flex-preferred-size: 80%;
+      flex-basis: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .footer .footer-list .footer-list-element:last-child {
+  -ms-flex-preferred-size: 20%;
+      flex-basis: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+body .footer .footer-list .footer-list-element:last-child .open-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  cursor: pointer;
+}
+
+body .footer .footer-list .footer-list-element:last-child .open-menu .hamburger {
+  list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0;
+  margin-left: 16px;
+}
+
+body .footer .footer-list .footer-list-element:last-child .open-menu .hamburger .plank {
+  width: 24px;
+  height: 4px;
+  background-color: #262926;
+  margin: 2px;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+body .footer .footer-list .footer-list-element:last-child .open-menu:hover .hamburger .plank:first-child {
+  -webkit-transform: scaleX(110%) translateY(-2px);
+          transform: scaleX(110%) translateY(-2px);
+}
+
+body .footer .footer-list .footer-list-element:last-child .open-menu:hover .hamburger .plank:last-child {
+  -webkit-transform: scaleX(110%) translateY(2px);
+          transform: scaleX(110%) translateY(2px);
+}
+
+body .footer .footer-list .footer-list-element:last-child .open-menu:hover .hamburger .plank:nth-child(2) {
+  -webkit-transform: scaleX(70%);
+          transform: scaleX(70%);
 }
 /*# sourceMappingURL=style.css.map */

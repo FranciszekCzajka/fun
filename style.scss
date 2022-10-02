@@ -23,6 +23,8 @@ body {
     padding: 0;
     background-color: $white;
     color: $black;
+    overflow: hidden;
+    font-family: "Roboto", sans-serif;
     .header {
         width: 100%;
         height: 10vh;
@@ -38,7 +40,6 @@ body {
     .landing-page {
         width: 100%;
         height: 90vh;
-        font-family: "Roboto", sans-serif;
         display: flex;
         justify-content: center;
         padding-top: 10vh;
@@ -170,6 +171,62 @@ body {
                 }
                 &:nth-child(odd) {
                     background-color: $dark-grey;
+                }
+            }
+        }
+    }
+    .footer {
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+        .footer-list {
+            display: flex;
+            list-style: none;
+            .footer-list-element {
+                &:first-child {
+                    flex-basis: 80%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                &:last-child {
+                    flex-basis: 20%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .open-menu {
+                        display: flex;
+                        cursor: pointer;
+                        .hamburger {
+                            list-style: none;
+                            display: flex;
+                            flex-direction: column;
+                            padding: 0;
+                            margin-left: 16px;
+                            .plank {
+                                width: 24px;
+                                height: 4px;
+                                background-color: $black;
+                                margin: 2px;
+                                transition: all 0.3s ease-out;
+                            }
+                        }
+                        &:hover {
+                            .hamburger {
+                                .plank {
+                                    &:first-child {
+                                        transform: scaleX(110%) translateY(-2px);
+                                    }
+                                    &:last-child {
+                                        transform: scaleX(110%) translateY(2px);
+                                    }
+                                    &:nth-child(2) {
+                                        transform: scaleX(70%);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
