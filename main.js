@@ -102,6 +102,7 @@ function createFood() {
             const cells = valuesLines[i].querySelectorAll(".calculator-cell");
             const lastLine = cells[cells.length - 1];
             const input = lastLine.querySelector("input");
+            input.classList = "input";
             for (let j = 1; j < tempValues.length; j++) {
                 tempValues[j] = Number(tempValues[j]);
             }
