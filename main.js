@@ -29,6 +29,9 @@ function displayNutrients(food) {
 
     const headers = ["Name", "Amount per 100g", "Unit"];
 
+    const tHead = document.createElement("thead");
+    const tBody = document.createElement("tbody");
+
     const tableHeadersRow = document.createElement("tr");
     tableHeadersRow.className = "nutrients-row-headers";
 
@@ -39,7 +42,8 @@ function displayNutrients(food) {
         tableHeadersRow.appendChild(tableHeader);
     }
 
-    table.appendChild(tableHeadersRow);
+    tHead.appendChild(tableHeadersRow);
+    table.appendChild(tHead);
 
     const nutrients = [
         { name: "Energy", amount: food.energy.toFixed(0) },
@@ -58,16 +62,18 @@ function displayNutrients(food) {
                 nutrients[i].amount,
                 "Kcal"
             );
-            table.appendChild(tableRow);
+            tBody.appendChild(tableRow);
         } else {
             const tableRow = addRow(
                 nutrients[i].name,
                 nutrients[i].amount,
                 "g"
             );
-            table.appendChild(tableRow);
+            tBody.appendChild(tableRow);
         }
     }
+
+    table.appendChild(tBody);
 
     const button = document.createElement("button");
     button.innerText = "Add to calculator";

@@ -147,7 +147,9 @@ body .landing-page .content .results .nutrients-table {
 }
 
 body .landing-page .content .results .nutrients-table .nutrients-row-headers {
-  background-color: #dfdfdf;
+  background-color: #57a773;
+  color: #fafffa;
+  letter-spacing: 1.2px;
 }
 
 body .landing-page .content .results .nutrients-table .nutrients-row-headers .nutrients-header {

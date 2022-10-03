@@ -112,7 +112,9 @@ body {
                 .nutrients-table {
                     border-collapse: collapse;
                     .nutrients-row-headers {
-                        background-color: $grey;
+                        background-color: $second-green;
+                        color: $white;
+                        letter-spacing: 1.2px;
                         .nutrients-header {
                             padding: 8px 12px;
                             font-size: 14px;
