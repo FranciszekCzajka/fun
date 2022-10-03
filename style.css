@@ -35,19 +35,19 @@ body .header {
           align-items: center;
   font-family: "Staatliches", cursive;
   letter-spacing: 1.2px;
-  font-size: 48px;
+  font-size: 32px;
 }
 
 body .landing-page {
   width: 100%;
-  height: 90vh;
+  height: 80vh;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  padding-top: 10vh;
+  padding-top: 4vh;
 }
 
 body .landing-page .content {
@@ -67,12 +67,13 @@ body .landing-page .content {
 body .landing-page .content .heading {
   text-align: center;
   margin-top: 0;
+  font-size: 22px;
 }
 
 body .landing-page .content .form .input {
   border-radius: 6px 0 0 6px;
   padding: 6px 8px;
-  font-size: 16px;
+  font-size: 12px;
   border-color: #157145;
   border-style: solid;
 }
@@ -80,7 +81,7 @@ body .landing-page .content .form .input {
 body .landing-page .content .form .submit {
   border-radius: 0 6px 6px 0;
   padding: 6px 8px;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: bold;
   color: #fafffa;
   border-color: #157145;
@@ -96,8 +97,8 @@ body .landing-page .content .form .submit:hover {
 }
 
 body .landing-page .content .results {
-  min-width: 292px;
-  height: 600px;
+  min-width: 280px;
+  height: calc(80vh - 64px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -108,6 +109,11 @@ body .landing-page .content .results {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  overflow: hidden;
+}
+
+body .landing-page .content .results .food-name {
+  font-size: 14px;
 }
 
 body .landing-page .content .results .food-list {
@@ -116,13 +122,15 @@ body .landing-page .content .results .food-list {
   list-style-type: none;
   padding-left: 0;
   z-index: 10;
+  overflow: auto;
 }
 
 body .landing-page .content .results .food-list .food-list-element {
-  width: 292px;
+  width: 272px;
   padding: 16px;
-  margin-bottom: 16px;
+  font-size: 14px;
   border-radius: 6px;
+  margin: 0 auto 16px auto;
   background-color: #f0f0f0;
   cursor: pointer;
   -webkit-transition: all ease-in-out 0.3s;
@@ -143,12 +151,14 @@ body .landing-page .content .results .nutrients-table .nutrients-row-headers {
 }
 
 body .landing-page .content .results .nutrients-table .nutrients-row-headers .nutrients-header {
-  padding: 12px;
+  padding: 8px 12px;
+  font-size: 14px;
 }
 
 body .landing-page .content .results .nutrients-table .nutrients-row-information .nutrients-cell {
   text-align: right;
-  padding: 12px;
+  padding: 8px 12px;
+  font-size: 12px;
 }
 
 body .landing-page .content .results .nutrients-table .nutrients-row-information .nutrients-cell:first-child {
@@ -185,6 +195,7 @@ body .calculator {
   background-color: #f0f0f0;
   -webkit-transition: all ease-in-out 0.3s;
   transition: all ease-in-out 0.3s;
+  z-index: 10;
 }
 
 body .calculator .calculator-table {
@@ -277,16 +288,21 @@ body .calculator .calculator-table-row .calculator-cell:nth-child(odd) {
 }
 
 body .footer {
-  width: 100%;
   position: fixed;
+  width: 100%;
+  margin-bottom: 32px;
   bottom: 0;
 }
 
 body .footer .footer-list {
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
 }
 
 body .footer .footer-list .footer-list-element:first-child {
@@ -295,9 +311,6 @@ body .footer .footer-list .footer-list-element:first-child {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -306,9 +319,17 @@ body .footer .footer-list .footer-list-element:first-child {
 body .footer .footer-list .footer-list-element:last-child {
   -ms-flex-preferred-size: 20%;
       flex-basis: 20%;
+}
+
+body .footer .footer-list .footer-list-element .open-menu {
+  cursor: pointer;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -317,15 +338,7 @@ body .footer .footer-list .footer-list-element:last-child {
           justify-content: center;
 }
 
-body .footer .footer-list .footer-list-element:last-child .open-menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  cursor: pointer;
-}
-
-body .footer .footer-list .footer-list-element:last-child .open-menu .hamburger {
-  list-style: none;
+body .footer .footer-list .footer-list-element .open-menu .hamburger {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -333,31 +346,70 @@ body .footer .footer-list .footer-list-element:last-child .open-menu .hamburger 
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  list-style: none;
   padding: 0;
-  margin-left: 16px;
 }
 
-body .footer .footer-list .footer-list-element:last-child .open-menu .hamburger .plank {
-  width: 24px;
-  height: 4px;
+body .footer .footer-list .footer-list-element .open-menu .hamburger .plank {
+  width: 12px;
+  height: 3px;
   background-color: #262926;
-  margin: 2px;
+  margin: 1px;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
 
-body .footer .footer-list .footer-list-element:last-child .open-menu:hover .hamburger .plank:first-child {
+body .footer .footer-list .footer-list-element .open-menu:hover .hamburger .plank:first-child {
   -webkit-transform: scaleX(110%) translateY(-2px);
           transform: scaleX(110%) translateY(-2px);
 }
 
-body .footer .footer-list .footer-list-element:last-child .open-menu:hover .hamburger .plank:last-child {
+body .footer .footer-list .footer-list-element .open-menu:hover .hamburger .plank:last-child {
   -webkit-transform: scaleX(110%) translateY(2px);
           transform: scaleX(110%) translateY(2px);
 }
 
-body .footer .footer-list .footer-list-element:last-child .open-menu:hover .hamburger .plank:nth-child(2) {
+body .footer .footer-list .footer-list-element .open-menu:hover .hamburger .plank:nth-child(2) {
   -webkit-transform: scaleX(70%);
           transform: scaleX(70%);
+}
+
+@media screen and (min-width: 576px) {
+  body .header {
+    font-size: 48px;
+  }
+  body .landing-page .content .heading {
+    font-size: 32px;
+  }
+  body .footer .footer-list {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  body .footer .footer-list {
+    font-size: 16px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  body .landing-page .content .results .food-name {
+    font-size: 20px;
+  }
+  body .landing-page .content .results .nutrients-table .nutrients-row-headers .nutrients-header {
+    font-size: 18px;
+  }
+  body .landing-page .content .results .nutrients-table .nutrients-row-information .nutrients-cell {
+    font-size: 16px;
+  }
+  body .footer .footer-list .footer-list-element .open-menu {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  body .footer .footer-list .footer-list-element .open-menu .hamburger {
+    margin-left: 12px;
+  }
 }
 /*# sourceMappingURL=style.css.map */

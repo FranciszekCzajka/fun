@@ -35,14 +35,14 @@ body {
         align-items: center;
         font-family: "Staatliches", cursive;
         letter-spacing: 1.2px;
-        font-size: 48px;
+        font-size: 32px;
     }
     .landing-page {
         width: 100%;
-        height: 90vh;
+        height: 80vh;
         display: flex;
         justify-content: center;
-        padding-top: 10vh;
+        padding-top: 4vh;
         .content {
             width: 678px;
             display: flex;
@@ -51,19 +51,20 @@ body {
             .heading {
                 text-align: center;
                 margin-top: 0;
+                font-size: 22px;
             }
             .form {
                 .input {
                     border-radius: 6px 0 0 6px;
                     padding: 6px 8px;
-                    font-size: 16px;
+                    font-size: 12px;
                     border-color: $green;
                     border-style: solid;
                 }
                 .submit {
                     border-radius: 0 6px 6px 0;
                     padding: 6px 8px;
-                    font-size: 16px;
+                    font-size: 12px;
                     font-weight: bold;
                     color: $white;
                     border-color: $green;
@@ -77,22 +78,28 @@ body {
                 }
             }
             .results {
-                min-width: 292px;
-                height: 600px;
+                min-width: 280px;
+                height: calc(80vh - 64px);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                overflow: hidden;
+                .food-name {
+                    font-size: 14px;
+                }
                 .food-list {
                     width: 100%;
                     height: 600px;
                     list-style-type: none;
                     padding-left: 0;
                     z-index: 10;
+                    overflow: auto;
                     .food-list-element {
-                        width: 292px;
+                        width: 272px;
                         padding: 16px;
-                        margin-bottom: 16px;
+                        font-size: 14px;
                         border-radius: 6px;
+                        margin: 0 auto 16px auto;
                         background-color: $dark-white;
                         cursor: pointer;
                         transition: all ease-in-out 0.3s;
@@ -107,13 +114,15 @@ body {
                     .nutrients-row-headers {
                         background-color: $grey;
                         .nutrients-header {
-                            padding: 12px;
+                            padding: 8px 12px;
+                            font-size: 14px;
                         }
                     }
                     .nutrients-row-information {
                         .nutrients-cell {
                             text-align: right;
-                            padding: 12px;
+                            padding: 8px 12px;
+                            font-size: 12px;
                             &:first-child {
                                 text-align: left;
                             }
@@ -148,6 +157,7 @@ body {
         width: 250px;
         background-color: $dark-white;
         transition: all ease-in-out 0.3s;
+        z-index: 10;
         .calculator-table {
             display: flex;
             flex-direction: column;
@@ -206,55 +216,126 @@ body {
         }
     }
     .footer {
-        width: 100%;
         position: fixed;
+        width: 100%;
+        margin-bottom: 32px;
         bottom: 0;
         .footer-list {
+            height: 100%;
             display: flex;
             list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 10px;
             .footer-list-element {
                 &:first-child {
                     flex-basis: 80%;
                     display: flex;
-                    align-items: center;
                     justify-content: center;
                 }
                 &:last-child {
                     flex-basis: 20%;
+                }
+                .open-menu {
+                    cursor: pointer;
                     display: flex;
+                    flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    .open-menu {
+                    .hamburger {
                         display: flex;
-                        cursor: pointer;
-                        .hamburger {
-                            list-style: none;
-                            display: flex;
-                            flex-direction: column;
-                            padding: 0;
-                            margin-left: 16px;
-                            .plank {
-                                width: 24px;
-                                height: 4px;
-                                background-color: $black;
-                                margin: 2px;
-                                transition: all 0.3s ease-out;
-                            }
+                        flex-direction: column;
+                        list-style: none;
+                        padding: 0;
+                        .plank {
+                            width: 12px;
+                            height: 3px;
+                            background-color: $black;
+                            margin: 1px;
+                            transition: all 0.3s ease-out;
                         }
-                        &:hover {
-                            .hamburger {
-                                .plank {
-                                    &:first-child {
-                                        transform: scaleX(110%) translateY(-2px);
-                                    }
-                                    &:last-child {
-                                        transform: scaleX(110%) translateY(2px);
-                                    }
-                                    &:nth-child(2) {
-                                        transform: scaleX(70%);
-                                    }
+                    }
+                    &:hover {
+                        .hamburger {
+                            .plank {
+                                &:first-child {
+                                    transform: scaleX(110%) translateY(-2px);
+                                }
+                                &:last-child {
+                                    transform: scaleX(110%) translateY(2px);
+                                }
+                                &:nth-child(2) {
+                                    transform: scaleX(70%);
                                 }
                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 576px) {
+    body {
+        .header {
+            font-size: 48px;
+        }
+        .landing-page {
+            .content {
+                .heading {
+                    font-size: 32px;
+                }
+            }
+        }
+        .footer {
+            .footer-list {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        .footer {
+            .footer-list {
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 992px) {
+    body {
+        .landing-page {
+            .content {
+                .results {
+                    .food-name {
+                        font-size: 20px;
+                    }
+                    .nutrients-table {
+                        .nutrients-row-headers {
+                            .nutrients-header {
+                                font-size: 18px;
+                            }
+                        }
+                        .nutrients-row-information {
+                            .nutrients-cell {
+                                font-size: 16px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .footer {
+            .footer-list {
+                .footer-list-element {
+                    .open-menu {
+                        flex-direction: row;
+                        .hamburger {
+                            margin-left: 12px;
                         }
                     }
                 }
