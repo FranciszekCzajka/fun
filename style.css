@@ -70,6 +70,12 @@ body .landing-page .content .heading {
   font-size: 22px;
 }
 
+body .landing-page .content .label {
+  width: 230px;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
 body .landing-page .content .form .input {
   border-radius: 6px 0 0 6px;
   padding: 6px 8px;
@@ -84,16 +90,16 @@ body .landing-page .content .form .submit {
   font-size: 12px;
   font-weight: bold;
   color: #fafffa;
-  border-color: #157145;
+  border-color: #0e4e2e;
   border-style: solid;
-  background-color: #57a773;
+  background-color: #157145;
   cursor: pointer;
   -webkit-transition: all ease-in-out 0.3s;
   transition: all ease-in-out 0.3s;
 }
 
 body .landing-page .content .form .submit:hover {
-  background-color: #157145;
+  background-color: #0e4e2e;
 }
 
 body .landing-page .content .results {
@@ -139,7 +145,7 @@ body .landing-page .content .results .food-list .food-list-element {
 
 body .landing-page .content .results .food-list .food-list-element:hover {
   color: #fafffa;
-  background-color: #57a773;
+  background-color: #0e4e2e;
 }
 
 body .landing-page .content .results .nutrients-table {
@@ -147,7 +153,7 @@ body .landing-page .content .results .nutrients-table {
 }
 
 body .landing-page .content .results .nutrients-table .nutrients-row-headers {
-  background-color: #57a773;
+  background-color: #157145;
   color: #fafffa;
   letter-spacing: 1.2px;
 }
@@ -175,8 +181,8 @@ body .landing-page .content .results .add-to-calculator {
   width: 100%;
   margin-top: 16px;
   padding: 12px;
-  border: 2px solid #157145;
-  background-color: #57a773;
+  border: 2px solid #0e4e2e;
+  background-color: #157145;
   color: #fafffa;
   -webkit-transition: all ease-in-out 0.3s;
   transition: all ease-in-out 0.3s;
@@ -185,7 +191,7 @@ body .landing-page .content .results .add-to-calculator {
 }
 
 body .landing-page .content .results .add-to-calculator:hover {
-  background-color: #157145;
+  background-color: #0e4e2e;
 }
 
 body .calculator {
@@ -275,7 +281,7 @@ body .calculator .calculator-table-row .calculator-cell .input {
   padding: 4px;
   border: none;
   border-radius: 6px;
-  background-color: #57a773;
+  background-color: #157145;
   color: #fafffa;
 }
 
@@ -382,6 +388,9 @@ body .footer .footer-list .footer-list-element .open-menu:hover .hamburger .plan
   }
   body .landing-page .content .heading {
     font-size: 32px;
+  }
+  body .landing-page .content .label {
+    font-size: 20px;
   }
   body .footer .footer-list {
     font-size: 14px;
