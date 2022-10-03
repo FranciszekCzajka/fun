@@ -411,5 +411,10 @@ body .footer .footer-list .footer-list-element .open-menu:hover .hamburger .plan
   body .footer .footer-list .footer-list-element .open-menu .hamburger {
     margin-left: 12px;
   }
+  body .footer .footer-list .footer-list-element .open-menu .hamburger .plank {
+    width: 24px;
+    height: 4px;
+    margin: 2px;
+  }
 }
 /*# sourceMappingURL=style.css.map */
