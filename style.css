@@ -116,6 +116,7 @@ body .landing-page .content .results {
       -ms-flex-align: center;
           align-items: center;
   overflow: hidden;
+  z-index: 7;
 }
 
 body .landing-page .content .results .food-name {
