@@ -295,6 +295,17 @@ body .calculator .calculator-table-row .calculator-cell:nth-child(odd) {
   background-color: #d0d0d0;
 }
 
+body .calculator .close-calculator {
+  position: fixed;
+  right: 16px;
+  top: 16px;
+  font-size: 32px;
+  display: none;
+  z-index: 11;
+  color: #fafffa;
+  cursor: pointer;
+}
+
 body .footer {
   position: fixed;
   width: 100%;
@@ -411,7 +422,7 @@ body .modal .error-headline {
   padding: 12px 36px;
 }
 
-body .modal .error-headline .close-button {
+body .modal .error-headline .close-modal {
   cursor: pointer;
 }
 

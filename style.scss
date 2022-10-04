@@ -221,6 +221,16 @@ body {
                 }
             }
         }
+        .close-calculator {
+            position: fixed;
+            right: 16px;
+            top: 16px;
+            font-size: 32px;
+            display: none;
+            z-index: 11;
+            color: $white;
+            cursor: pointer;
+        }
     }
     .footer {
         position: fixed;
@@ -299,7 +309,7 @@ body {
             color: $white;
             border-radius: 24px 24px 0 0;
             padding: 12px 36px;
-            .close-button {
+            .close-modal {
                 cursor: pointer;
             }
         }

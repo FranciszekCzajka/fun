@@ -1,5 +1,5 @@
 const modal = document.querySelector(".modal");
-const closeButton = document.querySelector(".close-button");
+const closeButton = document.querySelector(".close-modal");
 const errorMesasge = document.querySelector(".error-message");
 
 function openModal(text) {
