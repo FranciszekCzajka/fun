@@ -382,6 +382,44 @@ body .footer .footer-list .footer-list-element .open-menu:hover .hamburger .plan
           transform: scaleX(70%);
 }
 
+body .modal {
+  position: absolute;
+  top: 30%;
+  left: calc(50% - 125px);
+  width: 250px;
+  display: none;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  z-index: 11;
+}
+
+body .modal .error-headline {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #0e4e2e;
+  color: #fafffa;
+  border-radius: 24px 24px 0 0;
+  padding: 12px 36px;
+}
+
+body .modal .error-headline .close-button {
+  cursor: pointer;
+}
+
+body .modal .error-box {
+  width: 100%;
+  padding: 12px 36px;
+  background-color: #f0f0f0;
+  border-radius: 0 0 24px 24px;
+}
+
 @media screen and (min-width: 576px) {
   body .header {
     font-size: 48px;

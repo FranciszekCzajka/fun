@@ -240,51 +240,58 @@ function createFood() {
 
 const myNewFood = createFood();
 
-button.addEventListener("click", function () {
-    const results = document.querySelector(".results");
-    results.innerHTML = "";
+button.addEventListener("click", async function () {
+    if (input.value.length >= 3) {
+        const results = document.querySelector(".results");
+        results.innerHTML = "";
 
-    const API_KEY = "Pv5tp3ouhHnI2AHNO7VLPUlDVRaGdAdQftXvxLAK";
-    const API_URL = "https://api.nal.usda.gov";
-    const FOOD_URL = `${API_URL}/fdc/v1/foods/search?query=${input.value}&dataType=Survey%20%28FNDDS%29&pageSize=10&pageNumber=1&sortBy=dataType.keyword&api_key=${API_KEY}`;
+        const API_KEY = "Pv5tp3ouhHnI2AHNO7VLPUlDVRaGdAdQftXvxLAK";
+        const API_URL = "https://api.nal.usda.gov";
+        const FOOD_URL = `${API_URL}/fdc/v1/foods/search?query=${input.value}&dataType=Survey%20%28FNDDS%29&pageSize=10&pageNumber=1&sortBy=dataType.keyword&api_key=${API_KEY}`;
 
-    const promise = fetch(FOOD_URL);
+        const data = await fetch(FOOD_URL);
 
-    promise
-        .then(function (response) {
-            const processingPromise = response.json();
-            return processingPromise;
-        })
-        .then(function (processedResponse) {
-            const foodsResponse = processedResponse.foods;
-            const foods = processedResponse.foods.map(function (food) {
-                return food.description;
-            });
-            const foodsList = document.createElement("ul");
-            foodsList.className = "food-list";
-            results.appendChild(foodsList);
-            const foodList = document.querySelector(".food-list");
-            foods.map((food) => {
-                const listElement = document.createElement("li");
-                listElement.className = "food-list-element";
-                listElement.innerText = food;
-                foodList.append(listElement);
-            });
+        if (data.ok) {
+            const cleanedData = await data.json();
 
-            foodList.addEventListener("click", function (foodFromList) {
-                if (foodFromList.target.tagName == "LI") {
-                    input.value = "";
-                    results.innerHTML = "";
-                    const food = new myNewFood(
-                        foodsResponse[
-                            foods.indexOf(foodFromList.target.innerText)
-                        ]
-                    );
-                    displayNutrients(food);
-                    const buttonToAdd =
-                        document.querySelector(".add-to-calculator");
-                    buttonToAdd.addEventListener("click", () => food.add());
-                }
-            });
-        });
+            if (cleanedData.foods.length) {
+                const foodsResponse = cleanedData.foods;
+                const foods = cleanedData.foods.map(function (food) {
+                    return food.description;
+                });
+                const foodsList = document.createElement("ul");
+                foodsList.className = "food-list";
+                results.appendChild(foodsList);
+                const foodList = document.querySelector(".food-list");
+                foods.map((food) => {
+                    const listElement = document.createElement("li");
+                    listElement.className = "food-list-element";
+                    listElement.innerText = food;
+                    foodList.append(listElement);
+                });
+
+                foodList.addEventListener("click", function (foodFromList) {
+                    if (foodFromList.target.tagName == "LI") {
+                        input.value = "";
+                        results.innerHTML = "";
+                        const food = new myNewFood(
+                            foodsResponse[
+                                foods.indexOf(foodFromList.target.innerText)
+                            ]
+                        );
+                        displayNutrients(food);
+                        const buttonToAdd =
+                            document.querySelector(".add-to-calculator");
+                        buttonToAdd.addEventListener("click", () => food.add());
+                    }
+                });
+            } else {
+                openModal("No food found");
+            }
+        } else {
+            openModal("Something went wrong, sorry!");
+        }
+    } else {
+        openModal("Please write at least 3 characters");
+    }
 });

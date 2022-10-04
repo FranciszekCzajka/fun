@@ -281,6 +281,33 @@ body {
             }
         }
     }
+    .modal {
+        position: absolute;
+        top: 30%;
+        left: calc(50% - 125px);
+        width: 250px;
+        display: none;
+        flex-direction: column;
+        z-index: 11;
+        .error-headline {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            background-color: $second-green;
+            color: $white;
+            border-radius: 24px 24px 0 0;
+            padding: 12px 36px;
+            .close-button {
+                cursor: pointer;
+            }
+        }
+        .error-box {
+            width: 100%;
+            padding: 12px 36px;
+            background-color: $dark-white;
+            border-radius: 0 0 24px 24px;
+        }
+    }
 }
 
 @media screen and (min-width: 576px) {
