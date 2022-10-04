@@ -23,6 +23,7 @@ overlay.addEventListener("click", function () {
             overlay.style.display = "none";
         }, 350);
         isOpened = false;
+    } else {
+        closeModal();
     }
-    closeModal();
 });
