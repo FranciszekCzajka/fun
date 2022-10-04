@@ -469,6 +469,15 @@ body .overlay {
 }
 
 @media screen and (min-width: 992px) {
+  body .landing-page .content .label {
+    width: 292px;
+  }
+  body .landing-page .content .form .input {
+    font-size: 16px;
+  }
+  body .landing-page .content .form .submit {
+    font-size: 16px;
+  }
   body .landing-page .content .results .food-name {
     font-size: 20px;
   }

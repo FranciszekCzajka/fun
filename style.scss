@@ -372,6 +372,17 @@ body {
     body {
         .landing-page {
             .content {
+                .label {
+                    width: 292px;
+                }
+                .form {
+                    .input {
+                        font-size: 16px;
+                    }
+                    .submit {
+                        font-size: 16px;
+                    }
+                }
                 .results {
                     .food-name {
                         font-size: 20px;
